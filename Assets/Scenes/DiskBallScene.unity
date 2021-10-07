@@ -811,6 +811,10 @@ PrefabInstance:
       propertyPath: collisionMask.m_Bits
       value: 192
       objectReference: {fileID: 0}
+    - target: {fileID: 571270817, guid: d3096388c80ddc648aa762e3400d9293, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 92aea6c46a9b64943becc253e1bac0b5, type: 2}
     - target: {fileID: 1149254203045076996, guid: d3096388c80ddc648aa762e3400d9293,
         type: 3}
       propertyPath: collisionMask.m_Bits
