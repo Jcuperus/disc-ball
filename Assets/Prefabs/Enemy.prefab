@@ -47,7 +47,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &5769953491898972420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +83,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 54732162412249667, guid: 56c275dabae9010468cd11114198cea9,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54732162412249667, guid: 56c275dabae9010468cd11114198cea9,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -98,6 +103,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 54732162412249667, guid: 56c275dabae9010468cd11114198cea9,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 54732162412249667, guid: 56c275dabae9010468cd11114198cea9,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -109,16 +119,6 @@ PrefabInstance:
     - target: {fileID: 54732162412249667, guid: 56c275dabae9010468cd11114198cea9,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 54732162412249667, guid: 56c275dabae9010468cd11114198cea9,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 54732162412249667, guid: 56c275dabae9010468cd11114198cea9,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 54732162412249667, guid: 56c275dabae9010468cd11114198cea9,

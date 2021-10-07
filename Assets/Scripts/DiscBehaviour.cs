@@ -5,6 +5,7 @@ using UnityEngine;
 public class DiscBehaviour : MonoBehaviour
 {
     [SerializeField] private float speed = 18f;
+    [SerializeField] private LayerMask actorMask;
 
     private DiscController discController;
     private GameObject lastLaunchPlayer;
@@ -22,7 +23,7 @@ public class DiscBehaviour : MonoBehaviour
 
     private void Start()
     {
-        LaunchDisc(Vector3.back);
+        LaunchDisc(Vector3.left);
     }
 
     private void Update()
@@ -34,7 +35,14 @@ public class DiscBehaviour : MonoBehaviour
 
     private void OnDiscCollision(RaycastHit hitInfo)
     {
-        velocity = Vector3.Reflect(velocity, hitInfo.normal);
+        if ((1 << hitInfo.collider.gameObject.layer & actorMask.value) != 0)
+        {
+            Debug.Log("actor hit");
+        }
+        else
+        {
+            velocity = Vector3.Reflect(velocity, hitInfo.normal);
+        }
     }
 
     private void LaunchDisc(Vector3 newVelocity)
@@ -68,7 +76,7 @@ public class DiscBehaviour : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Goal"))
         {
-            Debug.Log("Goal by " + lastLaunchPlayer.name);
+            Debug.Log("Goal scored");
         }
     }
 }
