@@ -22,7 +22,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!holdsDiscBehaviour.hasDisc)
+        if (!holdsDiscBehaviour.HasDisc)
         {
             MoveTowardsDisc();
         }
@@ -45,7 +45,7 @@ public class EnemyBehaviour : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(0.1f);
-            if (holdsDiscBehaviour.hasDisc)
+            if (holdsDiscBehaviour.HasDisc)
             {
                 yield return new WaitForSeconds(Random.Range(MinFireDelay, MaxFireDelay));
                 FireInRandomDirection();

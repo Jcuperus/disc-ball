@@ -1,18 +1,23 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider))]
-public class DiscController : MonoBehaviour
+public class HorizontalCharacterController : MonoBehaviour
 {
-    public event Action<RaycastHit> OnCollide;
+    public struct CollisionData
+    {
+        public RaycastHit RaycastHit;
+        public bool HasCollision;
+    }
+
+    public CollisionData CollisionInfo;
     
     [SerializeField] private LayerMask collisionMask;
 
-    private new SphereCollider collider;
+    private float radius;
     
     private void Awake()
     {
-        collider = GetComponent<SphereCollider>();
+        radius = GetComponent<SphereCollider>().radius;
     }
     
     public void Move(Vector3 velocity)
@@ -25,11 +30,11 @@ public class DiscController : MonoBehaviour
     private void CheckCollisions(ref Vector3 velocity)
     {
         Vector3 direction = velocity.normalized;
-        Vector3 rayOrigin = transform.position + direction * collider.radius;
+        Vector3 rayOrigin = transform.position + direction * radius;
         
         if (Physics.Raycast(rayOrigin, direction, out RaycastHit hitInfo, velocity.magnitude, collisionMask.value))
         {
-            if (hitInfo.distance > collider.radius)
+            if (hitInfo.distance > radius)
             {
                 velocity = direction * hitInfo.distance;
             }
@@ -38,7 +43,12 @@ public class DiscController : MonoBehaviour
                 velocity = Vector3.zero;
             }
 
-            OnCollide?.Invoke(hitInfo);
+            CollisionInfo.RaycastHit = hitInfo;
+            CollisionInfo.HasCollision = true;
+        }
+        else
+        {
+            CollisionInfo.HasCollision = false;
         }
     }
 }

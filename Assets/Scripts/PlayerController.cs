@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
     private void FireDisc()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
             holdsDiscBehaviour.FireDisc();
         }

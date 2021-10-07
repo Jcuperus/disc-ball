@@ -1,24 +1,33 @@
-﻿using System;
+﻿using Helpers;
 using UnityEngine;
 
-[RequireComponent(typeof(DiscController))]
+[RequireComponent(typeof(HorizontalCharacterController))]
 public class DiscBehaviour : MonoBehaviour
 {
     [SerializeField] private float speed = 18f;
     [SerializeField] private LayerMask actorMask;
 
-    private DiscController discController;
-    private GameObject lastLaunchPlayer;
+    private HorizontalCharacterController discController;
     private Vector3 velocity;
     private bool isFollowing;
     
     private const float YOffset = 1.23f;
     private const float ParentZOffset = 0.4f;
 
+    public void LaunchDiscFromParent()
+    {
+        if (!isFollowing) return;
+
+        Transform discTransform = transform;
+        Vector3 direction = MathHelper.GetAngleVector(discTransform.parent.eulerAngles.y);
+        discTransform.SetParent(null);
+        discTransform.eulerAngles = Vector3.zero;
+        LaunchDisc(direction);
+    }
+
     private void Awake()
     {
-        discController = GetComponent<DiscController>();
-        discController.OnCollide += OnDiscCollision;
+        discController = GetComponent<HorizontalCharacterController>();
     }
 
     private void Start()
@@ -31,13 +40,32 @@ public class DiscBehaviour : MonoBehaviour
         if (isFollowing) return;
         
         discController.Move(speed * Time.deltaTime * velocity);
-    }
 
+        if (discController.CollisionInfo.HasCollision)
+        {
+            OnDiscCollision(discController.CollisionInfo.RaycastHit);
+        }
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Goal"))
+        {
+            Debug.Log("Goal scored");
+        }
+    }
+    
     private void OnDiscCollision(RaycastHit hitInfo)
     {
-        if ((1 << hitInfo.collider.gameObject.layer & actorMask.value) != 0)
+        GameObject hitObject = hitInfo.collider.gameObject;
+        
+        if ((1 << hitObject.layer & actorMask.value) != 0)
         {
-            Debug.Log("actor hit");
+            if (hitObject.TryGetComponent(out HoldsDiscBehaviour holdsDiscBehaviour))
+            {
+                FollowObject(hitObject);
+                holdsDiscBehaviour.Disc = this;
+            }
         }
         else
         {
@@ -50,33 +78,13 @@ public class DiscBehaviour : MonoBehaviour
         velocity = newVelocity;
         isFollowing = false;
     }
-
-    public void LaunchDiscFromParent()
+    
+    private void FollowObject(GameObject parentObject)
     {
-        if (isFollowing)
-        {
-            Quaternion parentRotation = transform.parent.rotation;
-            transform.SetParent(null);
-            Vector3 direction = parentRotation * Vector3.forward;
-            LaunchDisc(direction);
-            isFollowing = false;
-        }
-    }
-
-    public void SetFollow(GameObject parentObject)
-    {
-        lastLaunchPlayer = parentObject;
+        velocity = Vector3.zero;
         Transform discTransform = transform;
         discTransform.SetParent(parentObject.transform);
         discTransform.localPosition = new Vector3(0, YOffset, ParentZOffset);
         isFollowing = true;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Goal"))
-        {
-            Debug.Log("Goal scored");
-        }
     }
 }

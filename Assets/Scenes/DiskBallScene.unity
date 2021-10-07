@@ -726,6 +726,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 8398766458122998036, guid: d31a5ea0be3b06e4a8fdaa7cbf276ce3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8678976178509008392, guid: d31a5ea0be3b06e4a8fdaa7cbf276ce3,
         type: 3}
       propertyPath: m_Layer
@@ -746,6 +751,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7832283976806503671, guid: d3096388c80ddc648aa762e3400d9293,
+        type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 192
+      objectReference: {fileID: 0}
     - target: {fileID: 1149254203045076996, guid: d3096388c80ddc648aa762e3400d9293,
         type: 3}
       propertyPath: collisionMask.m_Bits
@@ -810,6 +820,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Disc
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429580876056665823, guid: d3096388c80ddc648aa762e3400d9293,
+        type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4429580876056665823, guid: d3096388c80ddc648aa762e3400d9293,
         type: 3}
