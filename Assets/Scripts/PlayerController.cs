@@ -2,30 +2,29 @@
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 10f;
+    [SerializeField] private float speed = 10f;
     
-    private HoldsDiscBehaviour _holdsDiscBehaviour;
-    private Vector3 _startPosition;
-    private float _verticalRange = 4.5f;
-    private float _horizontalRange = 3f;
-    private float _rotationSpeed = 8f;
+    private HoldsDiscBehaviour holdsDiscBehaviour;
+    private Vector3 startPosition;
     
-    // Start is called before the first frame update
-    void Start()
+    private const float VerticalRange = 4.5f;
+    private const float HorizontalRange = 3f;
+    private const float RotationSpeed = 8f;
+    
+    private void Start()
     {
-        _holdsDiscBehaviour = GetComponent<HoldsDiscBehaviour>();
-        _startPosition = transform.position;
+        holdsDiscBehaviour = GetComponent<HoldsDiscBehaviour>();
+        startPosition = transform.position;
     }
-
-    // Update is called once per frame
-    void FixedUpdate()
+    
+    private void FixedUpdate()
     {
         LookAtMouse();
         MovePlayer();
         FireDisc();
     }
     
-    void LookAtMouse()
+    private void LookAtMouse()
     {
         Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -33,33 +32,33 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 direction = (raycastHit.point - transform.position).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Euler(0, Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed).eulerAngles.y, 0);
+            transform.rotation = Quaternion.Euler(0, Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * RotationSpeed).eulerAngles.y, 0);
         }
     }
 
-    void MovePlayer()
+    private void MovePlayer()
     {
         Vector3 currentPosition = transform.position;
         float horizontalAxis = 0;
         float verticalAxis = 0;
         
-        if (transform.position.x < _startPosition.x - _horizontalRange)
+        if (transform.position.x < startPosition.x - HorizontalRange)
         {
-            transform.position = new Vector3(_startPosition.x - _horizontalRange, currentPosition.y, currentPosition.z);
-        } else if (transform.position.x > _startPosition.x + _horizontalRange)
+            transform.position = new Vector3(startPosition.x - HorizontalRange, currentPosition.y, currentPosition.z);
+        } else if (transform.position.x > startPosition.x + HorizontalRange)
         {
-            transform.position = new Vector3(_startPosition.x + _horizontalRange, currentPosition.y, currentPosition.z);
+            transform.position = new Vector3(startPosition.x + HorizontalRange, currentPosition.y, currentPosition.z);
         } else
         {
             horizontalAxis = Input.GetAxis("Horizontal");
         }
 
-        if (transform.position.z < _startPosition.z - _verticalRange)
+        if (transform.position.z < startPosition.z - VerticalRange)
         {
-            transform.position = new Vector3(currentPosition.x, currentPosition.y, _startPosition.z - _verticalRange);
-        } else if (transform.position.z > _startPosition.z + _verticalRange)
+            transform.position = new Vector3(currentPosition.x, currentPosition.y, startPosition.z - VerticalRange);
+        } else if (transform.position.z > startPosition.z + VerticalRange)
         {
-            transform.position = new Vector3(currentPosition.x, currentPosition.y, _startPosition.z + _verticalRange);
+            transform.position = new Vector3(currentPosition.x, currentPosition.y, startPosition.z + VerticalRange);
         } else
         {
             verticalAxis = Input.GetAxis("Vertical");
@@ -69,11 +68,11 @@ public class PlayerController : MonoBehaviour
         transform.Translate(speed * Time.deltaTime * movementVector, Space.World);
     }
 
-    void FireDisc()
+    private void FireDisc()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            _holdsDiscBehaviour.FireDisc();
+            holdsDiscBehaviour.FireDisc();
         }
     }
 }

@@ -1,56 +1,53 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
-using Quaternion = UnityEngine.Quaternion;
-using Vector3 = UnityEngine.Vector3;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    private HoldsDiscBehaviour _holdsDiscBehaviour;
-    private GameObject _disc;
-    private float _minFireDelay = 0.5f;
-    private float _maxFireDelay = 1.5f;
-    private float _rotationMin = 180f;
-    private float _rotationMax = 360f;
+    [SerializeField] private float speed = 2f;
 
-    public float speed = 2f;
+    private HoldsDiscBehaviour holdsDiscBehaviour;
+    private GameObject disc;
     
-    void Start()
+    private const float MinFireDelay = 0.5f;
+    private const float MaxFireDelay = 1.5f;
+    private const float RotationMin = 180f;
+    private const float RotationMax = 360f;
+    
+    private void Start()
     {
-        _holdsDiscBehaviour = GetComponent<HoldsDiscBehaviour>();
-        _disc = GameObject.FindWithTag("Disc");
+        holdsDiscBehaviour = GetComponent<HoldsDiscBehaviour>();
+        disc = GameObject.FindWithTag("Disc");
         StartCoroutine(CheckHoldsDisk());
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        if (!_holdsDiscBehaviour.hasDisc)
+        if (!holdsDiscBehaviour.hasDisc)
         {
             MoveTowardsDisc();
         }
     }
 
-    void FireInRandomDirection()
+    private void FireInRandomDirection()
     {
-        transform.rotation = Quaternion.Euler(0, Random.Range(_rotationMin, _rotationMax), 0);
-        _holdsDiscBehaviour.FireDisc();
+        transform.rotation = Quaternion.Euler(0, Random.Range(RotationMin, RotationMax), 0);
+        holdsDiscBehaviour.FireDisc();
     }
 
-    void MoveTowardsDisc()
+    private void MoveTowardsDisc()
     {
-        Vector3 direction = Vector3.Scale(_disc.transform.position - transform.position, new Vector3(0, 0, 1));
+        Vector3 direction = Vector3.Scale(disc.transform.position - transform.position, new Vector3(0, 0, 1));
         transform.Translate(speed * Time.deltaTime * direction.normalized, Space.World);
     }
     
-    IEnumerator CheckHoldsDisk()
+    private IEnumerator CheckHoldsDisk()
     {
         while (true)
         {
             yield return new WaitForSeconds(0.1f);
-            if (_holdsDiscBehaviour.hasDisc)
+            if (holdsDiscBehaviour.hasDisc)
             {
-                yield return new WaitForSeconds(Random.Range(_minFireDelay, _maxFireDelay));
+                yield return new WaitForSeconds(Random.Range(MinFireDelay, MaxFireDelay));
                 FireInRandomDirection();
             }
         }
