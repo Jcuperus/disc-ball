@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(HoldsDiscBehaviour))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;

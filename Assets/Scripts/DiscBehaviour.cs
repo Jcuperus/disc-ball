@@ -32,7 +32,7 @@ public class DiscBehaviour : MonoBehaviour
 
     private void Start()
     {
-        LaunchDisc(Vector3.left);
+        LaunchDisc(Vector3.right);
     }
 
     private void Update()
