@@ -26,8 +26,10 @@ public class PlayerController : MonoBehaviour
     
     private void LookAtMouse()
     {
+        if (!Camera.main) return;
+        
         Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+        
         if (Physics.Raycast(mouseRay, out RaycastHit raycastHit, 100))
         {
             Vector3 direction = (raycastHit.point - transform.position).normalized;
@@ -64,7 +66,7 @@ public class PlayerController : MonoBehaviour
             verticalAxis = Input.GetAxis("Vertical");
         }
         
-        Vector3 movementVector = new Vector3(horizontalAxis, 0, verticalAxis);
+        var movementVector = new Vector3(horizontalAxis, 0, verticalAxis);
         transform.Translate(speed * Time.deltaTime * movementVector, Space.World);
     }
 

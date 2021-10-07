@@ -1,25 +1,45 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
+[RequireComponent(typeof(DiscController))]
 public class DiscBehaviour : MonoBehaviour
 {
     [SerializeField] private float speed = 18f;
 
+    private DiscController discController;
     private GameObject lastLaunchPlayer;
-    private new Rigidbody rigidbody;
+    private Vector3 velocity;
     private bool isFollowing;
     
     private const float YOffset = 1.23f;
     private const float ParentZOffset = 0.4f;
 
+    private void Awake()
+    {
+        discController = GetComponent<DiscController>();
+        discController.OnCollide += OnDiscCollision;
+    }
+
     private void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
         LaunchDisc(Vector3.back);
     }
 
-    private void LaunchDisc(Vector3 direction)
+    private void Update()
     {
-        rigidbody.AddForce(speed * direction, ForceMode.Impulse);
+        if (isFollowing) return;
+        
+        discController.Move(speed * Time.deltaTime * velocity);
+    }
+
+    private void OnDiscCollision(RaycastHit hitInfo)
+    {
+        velocity = Vector3.Reflect(velocity, hitInfo.normal);
+    }
+
+    private void LaunchDisc(Vector3 newVelocity)
+    {
+        velocity = newVelocity;
         isFollowing = false;
     }
 
@@ -38,7 +58,6 @@ public class DiscBehaviour : MonoBehaviour
     public void SetFollow(GameObject parentObject)
     {
         lastLaunchPlayer = parentObject;
-        rigidbody.velocity = Vector3.zero;
         Transform discTransform = transform;
         discTransform.SetParent(parentObject.transform);
         discTransform.localPosition = new Vector3(0, YOffset, ParentZOffset);
