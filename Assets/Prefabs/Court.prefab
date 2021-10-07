@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3207246930107711721}
   - component: {fileID: 8398766458122998036}
   - component: {fileID: 4237649745326942319}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,6 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,6 +82,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &4237649745326942319
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -107,7 +109,7 @@ GameObject:
   - component: {fileID: 5445174298554016948}
   - component: {fileID: 5240471178484602509}
   - component: {fileID: 2550463728009204474}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,6 +153,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -176,6 +179,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &2550463728009204474
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -200,7 +204,7 @@ GameObject:
   - component: {fileID: 4211876710483126946}
   - component: {fileID: 8365003895528766442}
   - component: {fileID: 3666210767165235633}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,6 +248,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -268,6 +273,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2408397583026669502
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,7 +285,7 @@ GameObject:
   - component: {fileID: 7238941991458841425}
   - component: {fileID: 9086969288772229128}
   - component: {fileID: 2917842155153535500}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: OuterFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,6 +329,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -347,6 +354,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3057666093516576519
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,7 +366,7 @@ GameObject:
   - component: {fileID: 5268491408360322010}
   - component: {fileID: 5211042391072961643}
   - component: {fileID: 3232569571087271484}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeatDeck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,6 +410,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -427,6 +436,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3327493556385310872
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,7 +448,7 @@ GameObject:
   - component: {fileID: 9022033738063008837}
   - component: {fileID: 4370780758813854435}
   - component: {fileID: 6700652629970301340}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Seats.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,6 +492,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -506,6 +517,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3895136679357420856
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +527,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4415109285353213826}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Court
   m_TagString: Goal
   m_Icon: {fileID: 0}
@@ -558,7 +570,7 @@ GameObject:
   - component: {fileID: 8402235513822856181}
   - component: {fileID: 3197775500200703813}
   - component: {fileID: 4705138030178425254}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Seats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -602,6 +614,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -626,6 +639,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &6482124376444132066
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,7 +654,7 @@ GameObject:
   - component: {fileID: 6537151279143879232}
   - component: {fileID: 7150034210240437459}
   - component: {fileID: 7150034210240437458}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Goal
   m_TagString: Goal
   m_Icon: {fileID: 0}
@@ -684,6 +698,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -708,6 +723,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!54 &6537151279143879232
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -761,7 +777,7 @@ GameObject:
   - component: {fileID: 6453316455303862575}
   - component: {fileID: 8955272583250541554}
   - component: {fileID: 7332240915022400510}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -805,6 +821,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -829,6 +846,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7820581400284075239
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,7 +858,7 @@ GameObject:
   - component: {fileID: 2715289831897154851}
   - component: {fileID: 7751341237311504721}
   - component: {fileID: 6318756371651132055}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -884,6 +902,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -908,6 +927,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &8678976178509008392
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,7 +939,7 @@ GameObject:
   - component: {fileID: 3256720546791256402}
   - component: {fileID: 4132349508754006350}
   - component: {fileID: 620427780308226963}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -963,6 +983,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -987,3 +1008,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}

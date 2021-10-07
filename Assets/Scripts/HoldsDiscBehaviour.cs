@@ -2,34 +2,30 @@
 
 public class HoldsDiscBehaviour : MonoBehaviour
 {
-    public DiscBehaviour Disc
-    {
-        get => disc;
-        set
-        {
-            disc = value;
-            animator.SetBool(HoldsDiskTrigger, HasDisc);
-        }
-    }
-
-    public bool HasDisc => Disc != null;
+    public bool HasDisc { get; private set; }
     
     private Animator animator;
     private DiscBehaviour disc;
     
     private static readonly int HoldsDiskTrigger = Animator.StringToHash("holdsDisk");
 
+    private void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
+    
     public void FireDisc()
     {
         if (!HasDisc) return;
 
-        Disc.LaunchDiscFromParent();
-        animator.SetBool(HoldsDiskTrigger, HasDisc);
-        Disc = null;
+        disc.LaunchDiscFromParent();
+        SetDisc(null);
     }
 
-    private void Start()
+    public void SetDisc(DiscBehaviour newDisc)
     {
-        animator = GetComponentInChildren<Animator>();
+        disc = newDisc;
+        HasDisc = newDisc != null;
+        animator.SetBool(HoldsDiskTrigger, HasDisc);
     }
 }

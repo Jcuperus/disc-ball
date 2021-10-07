@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
         startPosition = transform.position;
     }
     
-    private void FixedUpdate()
+    private void Update()
     {
         LookAtMouse();
         MovePlayer();
@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     private void FireDisc()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
             holdsDiscBehaviour.FireDisc();
         }

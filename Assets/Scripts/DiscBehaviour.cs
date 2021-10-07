@@ -1,38 +1,30 @@
 ﻿using Helpers;
 using UnityEngine;
+using MovementControllers;
 
-[RequireComponent(typeof(HorizontalCharacterController))]
+[RequireComponent(typeof(SimpleMovementController))]
 public class DiscBehaviour : MonoBehaviour
 {
-    [SerializeField] private float speed = 18f;
     [SerializeField] private LayerMask actorMask;
+    [SerializeField] private Vector3 initialVelocity;
+    [SerializeField] private float speed = 18f;
+    [SerializeField] private float actorCollisionDelay = 0.1f;
 
-    private HorizontalCharacterController discController;
+    private SimpleMovementController discController;
     private Vector3 velocity;
     private bool isFollowing;
     
     private const float YOffset = 1.23f;
     private const float ParentZOffset = 0.4f;
 
-    public void LaunchDiscFromParent()
-    {
-        if (!isFollowing) return;
-
-        Transform discTransform = transform;
-        Vector3 direction = MathHelper.GetAngleVector(discTransform.parent.eulerAngles.y);
-        discTransform.SetParent(null);
-        discTransform.eulerAngles = Vector3.zero;
-        LaunchDisc(direction);
-    }
-
     private void Awake()
     {
-        discController = GetComponent<HorizontalCharacterController>();
+        discController = GetComponent<SimpleMovementController>();
     }
 
     private void Start()
     {
-        LaunchDisc(Vector3.right);
+        LaunchDisc(initialVelocity.normalized);
     }
 
     private void Update()
@@ -55,6 +47,18 @@ public class DiscBehaviour : MonoBehaviour
         }
     }
     
+    public void LaunchDiscFromParent()
+    {
+        if (!isFollowing) return;
+
+        Transform discTransform = transform;
+        Vector3 direction = MathHelper.GetAngleVector(discTransform.parent.eulerAngles.y);
+        discTransform.SetParent(null);
+        discTransform.eulerAngles = Vector3.zero;
+        LaunchDisc(direction);
+        discController.DisableMask(actorMask, actorCollisionDelay);
+    }
+    
     private void OnDiscCollision(RaycastHit hitInfo)
     {
         GameObject hitObject = hitInfo.collider.gameObject;
@@ -64,7 +68,7 @@ public class DiscBehaviour : MonoBehaviour
             if (hitObject.TryGetComponent(out HoldsDiscBehaviour holdsDiscBehaviour))
             {
                 FollowObject(hitObject);
-                holdsDiscBehaviour.Disc = this;
+                holdsDiscBehaviour.SetDisc(this);
             }
         }
         else

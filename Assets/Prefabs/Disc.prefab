@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 92aea6c46a9b64943becc253e1bac0b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,7 +91,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4429580876056665795}
   - component: {fileID: 6137552393699529215}
-  - component: {fileID: 4429580876056665823}
+  - component: {fileID: 142665569567828347}
+  - component: {fileID: -7728553324131716774}
   m_Layer: 0
   m_Name: Disc
   m_TagString: Disc
@@ -127,7 +128,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.4
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4429580876056665823
+--- !u!114 &142665569567828347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4429580876056665822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e72c9b2143a74758b547a4ec825345ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 192
+--- !u!114 &-7728553324131716774
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,4 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf6138d83518bdb49921aa5607bfddc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  actorMask:
+    serializedVersion: 2
+    m_Bits: 128
+  initialVelocity: {x: 0, y: 0, z: 1}
+  speed: 18
