@@ -1,4 +1,4 @@
-﻿using MovementControllers;
+﻿using System;
 using UnityEngine;
 
 [RequireComponent(typeof(HoldsDiscBehaviour), typeof(SimpleMovementController))]
@@ -21,7 +21,12 @@ public class PlayerController : MonoBehaviour
         MovePlayer();
         FireDisc();
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(gameObject.name + " entered a trigger");
+    }
+
     private void LookAtMouse()
     {
         if (!Camera.main) return;

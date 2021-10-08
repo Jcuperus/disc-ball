@@ -442,6 +442,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1949904456259578257, guid: 5bf6301561b7b8e4a898ca23a3181ee8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1949904456259578261, guid: 5bf6301561b7b8e4a898ca23a3181ee8,
         type: 3}
       propertyPath: m_RootOrder
@@ -566,6 +571,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2707545480458550010, guid: b7e361d5104195d41855d9f664cd7f5a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7e361d5104195d41855d9f664cd7f5a, type: 3}
 --- !u!1001 &4237649744620406323
@@ -575,16 +585,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 782314994}
     m_Modifications:
-    - target: {fileID: 1849350807969731786, guid: d31a5ea0be3b06e4a8fdaa7cbf276ce3,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3895136679357420856, guid: d31a5ea0be3b06e4a8fdaa7cbf276ce3,
         type: 3}
       propertyPath: m_Name
       value: Court
       objectReference: {fileID: 0}
+    - target: {fileID: 4237649745326942319, guid: d31a5ea0be3b06e4a8fdaa7cbf276ce3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237649745326942319, guid: d31a5ea0be3b06e4a8fdaa7cbf276ce3,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 8b5283a63b795d54a8d815ede5f5b3b5,
+        type: 2}
     - target: {fileID: 4415109285353213826, guid: d31a5ea0be3b06e4a8fdaa7cbf276ce3,
         type: 3}
       propertyPath: m_RootOrder
@@ -658,7 +674,12 @@ PrefabInstance:
     - target: {fileID: -7728553324131716774, guid: d3096388c80ddc648aa762e3400d9293,
         type: 3}
       propertyPath: initialVelocity.x
-      value: 1
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7728553324131716774, guid: d3096388c80ddc648aa762e3400d9293,
+        type: 3}
+      propertyPath: initialVelocity.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4429580876056665795, guid: d3096388c80ddc648aa762e3400d9293,
         type: 3}
