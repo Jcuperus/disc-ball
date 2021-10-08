@@ -3,10 +3,11 @@ using UnityEngine;
 
 namespace MovementControllers
 {
-    [RequireComponent(typeof(SphereCollider))]
+    [RequireComponent(typeof(Collider))]
     public class SimpleMovementController : MonoBehaviour
     {
         [SerializeField] private LayerMask collisionMask;
+        [SerializeField] private float castYOffset;
         
         public struct CollisionData
         {
@@ -16,18 +17,18 @@ namespace MovementControllers
     
         public CollisionData CollisionInfo;
         
-        protected float Radius;
+        private float radius;
 
-        protected virtual void Awake()
+        private void Awake()
         {
-            Radius = GetComponent<SphereCollider>().radius;
+            radius = GetComponent<Collider>().bounds.extents.x;
         }
         
-        public void Move(Vector3 velocity)
+        public void Move(Vector3 velocity, Space space = Space.Self)
         {
             CheckCollisions(ref velocity);
             
-            transform.Translate(velocity);
+            transform.Translate(velocity, space);
         }
 
         public void DisableMask(LayerMask mask, float delay)
@@ -44,10 +45,11 @@ namespace MovementControllers
         private void CheckCollisions(ref Vector3 velocity)
         {
             Vector3 direction = velocity.normalized;
+            Vector3 raycastOrigin = transform.position + Vector3.up * castYOffset;
             float rayLength = velocity.magnitude;
 
             RaycastHit[] raycastHits =
-                Physics.SphereCastAll(transform.position, Radius, direction, rayLength, collisionMask.value);
+                Physics.SphereCastAll(raycastOrigin, radius, direction, rayLength, collisionMask.value);
             
             if (raycastHits.Length > 0)
             {
@@ -57,7 +59,7 @@ namespace MovementControllers
 
                     rayLength = hitInfo.distance;
                     
-                    if (rayLength > Radius)
+                    if (rayLength > radius)
                     {
                         velocity = direction * rayLength;
                     }

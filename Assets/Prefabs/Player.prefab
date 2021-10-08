@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1949904456259578261}
   - component: {fileID: 3401823710419124526}
-  - component: {fileID: 6157624034285190662}
   - component: {fileID: 2316745100894203204}
+  - component: {fileID: 47311096}
+  - component: {fileID: 6157624034285190662}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -48,6 +49,34 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &2316745100894203204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949904456259578257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a952fe488d45f844498ff6726317afe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &47311096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949904456259578257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e72c9b2143a74758b547a4ec825345ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 320
+  castYOffset: 0.5
 --- !u!114 &6157624034285190662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,18 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
---- !u!114 &2316745100894203204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1949904456259578257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a952fe488d45f844498ff6726317afe6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  rotationSpeed: 8
 --- !u!1001 &5339428420011969751
 PrefabInstance:
   m_ObjectHideFlags: 0

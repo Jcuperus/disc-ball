@@ -1,21 +1,18 @@
-﻿using UnityEngine;
+﻿using MovementControllers;
+using UnityEngine;
 
-[RequireComponent(typeof(HoldsDiscBehaviour))]
+[RequireComponent(typeof(HoldsDiscBehaviour), typeof(SimpleMovementController))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float speed = 10f, rotationSpeed = 8f;
     
     private HoldsDiscBehaviour holdsDiscBehaviour;
-    private Vector3 startPosition;
-    
-    private const float VerticalRange = 4.5f;
-    private const float HorizontalRange = 3f;
-    private const float RotationSpeed = 8f;
+    private SimpleMovementController movementController;
     
     private void Start()
     {
         holdsDiscBehaviour = GetComponent<HoldsDiscBehaviour>();
-        startPosition = transform.position;
+        movementController = GetComponent<SimpleMovementController>();
     }
     
     private void Update()
@@ -35,40 +32,15 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 direction = (raycastHit.point - transform.position).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Euler(0, Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * RotationSpeed).eulerAngles.y, 0);
+            transform.rotation = Quaternion.Euler(0, Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime).eulerAngles.y, 0);
         }
     }
 
     private void MovePlayer()
     {
-        Vector3 currentPosition = transform.position;
-        float horizontalAxis = 0;
-        float verticalAxis = 0;
-        
-        if (transform.position.x < startPosition.x - HorizontalRange)
-        {
-            transform.position = new Vector3(startPosition.x - HorizontalRange, currentPosition.y, currentPosition.z);
-        } else if (transform.position.x > startPosition.x + HorizontalRange)
-        {
-            transform.position = new Vector3(startPosition.x + HorizontalRange, currentPosition.y, currentPosition.z);
-        } else
-        {
-            horizontalAxis = Input.GetAxis("Horizontal");
-        }
+        var inputVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
 
-        if (transform.position.z < startPosition.z - VerticalRange)
-        {
-            transform.position = new Vector3(currentPosition.x, currentPosition.y, startPosition.z - VerticalRange);
-        } else if (transform.position.z > startPosition.z + VerticalRange)
-        {
-            transform.position = new Vector3(currentPosition.x, currentPosition.y, startPosition.z + VerticalRange);
-        } else
-        {
-            verticalAxis = Input.GetAxis("Vertical");
-        }
-        
-        var movementVector = new Vector3(horizontalAxis, 0, verticalAxis);
-        transform.Translate(speed * Time.deltaTime * movementVector, Space.World);
+        movementController.Move(speed * Time.deltaTime * inputVector.normalized, Space.World);
     }
 
     private void FireDisc()

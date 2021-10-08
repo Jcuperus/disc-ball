@@ -1,11 +1,14 @@
 ﻿using System.Collections;
+using MovementControllers;
 using UnityEngine;
 
+[RequireComponent(typeof(HoldsDiscBehaviour), typeof(SimpleMovementController))]
 public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] private float speed = 2f;
 
     private HoldsDiscBehaviour holdsDiscBehaviour;
+    private SimpleMovementController movementController;
     private GameObject disc;
     
     private const float MinFireDelay = 0.5f;
@@ -16,11 +19,13 @@ public class EnemyBehaviour : MonoBehaviour
     private void Start()
     {
         holdsDiscBehaviour = GetComponent<HoldsDiscBehaviour>();
+        movementController = GetComponent<SimpleMovementController>();
         disc = GameObject.FindWithTag("Disc");
+        
         StartCoroutine(CheckHoldsDisk());
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (!holdsDiscBehaviour.HasDisc)
         {
@@ -36,8 +41,9 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void MoveTowardsDisc()
     {
-        Vector3 direction = Vector3.Scale(disc.transform.position - transform.position, new Vector3(0, 0, 1));
-        transform.Translate(speed * Time.deltaTime * direction.normalized, Space.World);
+        Vector3 direction = Vector3.Scale(disc.transform.position - transform.position, new Vector3(0, 0, 1f));
+        
+        movementController.Move(speed * Time.deltaTime * direction.normalized, Space.World);
     }
     
     private IEnumerator CheckHoldsDisk()
