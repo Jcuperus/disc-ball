@@ -8,7 +8,7 @@ public class DiscBehaviour : MonoBehaviour
     [SerializeField] private Vector3 initialVelocity;
     [SerializeField] private float speed = 18f;
     [SerializeField] private float actorCollisionDelay = 0.1f;
-
+    
     private SimpleMovementController discController;
     private Vector3 velocity;
     private bool isFollowing;
@@ -35,14 +35,6 @@ public class DiscBehaviour : MonoBehaviour
         if (discController.CollisionInfo.HasCollision)
         {
             OnDiscCollision(discController.CollisionInfo.RaycastHit);
-        }
-    }
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Goal"))
-        {
-            Debug.Log("Goal scored");
         }
     }
     
