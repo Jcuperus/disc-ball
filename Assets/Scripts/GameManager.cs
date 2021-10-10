@@ -1,8 +1,15 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
     [SerializeField] private GoalTrigger playerGoal, enemyGoal;
+
+    public Action<int, int> OnScoreChanged;
+    
+    private int playerScore, enemyScore;
+    
+    
     
     protected override void Awake()
     {
@@ -14,6 +21,9 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void OnGoalScored(bool isPlayerGoal)
     {
-        Debug.Log(isPlayerGoal ? "Player" : "Enemy");
+        if (isPlayerGoal) playerScore++;
+        else enemyScore++;
+        
+        OnScoreChanged.Invoke(playerScore, enemyScore);
     }
 }
