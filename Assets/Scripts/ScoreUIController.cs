@@ -5,14 +5,17 @@ public class ScoreUIController : MonoBehaviour
 {
     [SerializeField] private TMP_Text playerScoreLabel, enemyScoreLabel;
 
+    private GameManager gameManager;
+    
     private void Start()
     {
-        GameManager.Instance.OnScoreChanged += OnScoreChanged;
+        gameManager = GameManager.Instance;
+        gameManager.Score.OnScoreChanged += OnScoreChanged;
     }
 
-    private void OnScoreChanged(int playerScore, int enemyScore)
+    private void OnScoreChanged()
     {
-        playerScoreLabel.text = playerScore.ToString();
-        enemyScoreLabel.text = enemyScore.ToString();
+        playerScoreLabel.text = gameManager.Score.PlayerScore.ToString();
+        enemyScoreLabel.text = gameManager.Score.EnemyScore.ToString();
     }
 }

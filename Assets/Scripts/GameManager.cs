@@ -5,11 +5,34 @@ public class GameManager : MonoSingleton<GameManager>
 {
     [SerializeField] private GoalTrigger playerGoal, enemyGoal;
 
-    public Action<int, int> OnScoreChanged;
+    public struct ScoreData
+    {
+        public int PlayerScore
+        {
+            get => playerScore;
+            set
+            {
+                playerScore = value;
+                OnScoreChanged.Invoke();
+            }
+        }
+        
+        public int EnemyScore
+        {
+            get => enemyScore;
+            set
+            {
+                enemyScore = value;
+                OnScoreChanged.Invoke();
+            }
+        }
+
+        private int playerScore, enemyScore;
+        
+        public Action OnScoreChanged;
+    }
     
-    private int playerScore, enemyScore;
-    
-    
+    public ScoreData Score;
     
     protected override void Awake()
     {
@@ -21,9 +44,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void OnGoalScored(bool isPlayerGoal)
     {
-        if (isPlayerGoal) playerScore++;
-        else enemyScore++;
-        
-        OnScoreChanged.Invoke(playerScore, enemyScore);
+        if (isPlayerGoal) Score.PlayerScore++;
+        else Score.EnemyScore++;
     }
 }
