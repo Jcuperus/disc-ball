@@ -1,16 +1,17 @@
-﻿using Helpers;
+﻿using System;
+using Helpers;
 using UnityEngine;
 
 [RequireComponent(typeof(SimpleMovementController))]
 public class DiscBehaviour : MonoBehaviour
 {
     [SerializeField] private LayerMask actorMask;
-    [SerializeField] private Vector3 initialVelocity;
     [SerializeField] private float speed = 18f;
     [SerializeField] private float actorCollisionDelay = 0.1f;
+
+    [NonSerialized] public Vector3 velocity;
     
     private SimpleMovementController discController;
-    private Vector3 velocity;
     private bool isFollowing;
     
     private const float YOffset = 1.23f;
@@ -21,9 +22,15 @@ public class DiscBehaviour : MonoBehaviour
         discController = GetComponent<SimpleMovementController>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        LaunchDisc(initialVelocity.normalized);
+        LaunchDisc(velocity);
+    }
+
+    private void OnDisable()
+    {
+        velocity = Vector3.zero;
+        isFollowing = false;
     }
 
     private void Update()

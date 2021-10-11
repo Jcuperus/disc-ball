@@ -8,7 +8,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private HoldsDiscBehaviour holdsDiscBehaviour;
     private SimpleMovementController movementController;
-    private GameObject disc;
+    private Transform discTransform;
     
     private const float MinFireDelay = 0.5f;
     private const float MaxFireDelay = 1.5f;
@@ -19,7 +19,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         holdsDiscBehaviour = GetComponent<HoldsDiscBehaviour>();
         movementController = GetComponent<SimpleMovementController>();
-        disc = GameObject.FindWithTag("Disc");
+        discTransform = GameManager.Instance.DiscInstance.gameObject.transform;
         
         StartCoroutine(CheckHoldsDisk());
     }
@@ -40,7 +40,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void MoveTowardsDisc()
     {
-        Vector3 direction = Vector3.Scale(disc.transform.position - transform.position, new Vector3(0, 0, 1f));
+        Vector3 direction = Vector3.Scale(discTransform.position - transform.position, new Vector3(0, 0, 1f));
         
         movementController.Move(speed * Time.deltaTime * direction.normalized, Space.World);
     }

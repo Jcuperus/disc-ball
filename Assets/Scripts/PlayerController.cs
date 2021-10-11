@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(HoldsDiscBehaviour), typeof(SimpleMovementController))]
 public class PlayerController : MonoBehaviour
@@ -9,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private HoldsDiscBehaviour holdsDiscBehaviour;
     private SimpleMovementController movementController;
     
-    private void Start()
+    private void Awake()
     {
         holdsDiscBehaviour = GetComponent<HoldsDiscBehaviour>();
         movementController = GetComponent<SimpleMovementController>();
@@ -20,11 +19,6 @@ public class PlayerController : MonoBehaviour
         LookAtMouse();
         MovePlayer();
         FireDisc();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(gameObject.name + " entered a trigger");
     }
 
     private void LookAtMouse()

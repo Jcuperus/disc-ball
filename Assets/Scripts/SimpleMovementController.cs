@@ -21,7 +21,12 @@ public class SimpleMovementController : MonoBehaviour
     {
         radius = GetComponent<Collider>().bounds.extents.x;
     }
-    
+
+    private void OnDisable()
+    {
+        CollisionInfo.HasCollision = false;
+    }
+
     public void Move(Vector3 velocity, Space space = Space.Self)
     {
         CheckCollisions(ref velocity);
