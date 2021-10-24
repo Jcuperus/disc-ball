@@ -704,11 +704,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1949904456259578257, guid: 5bf6301561b7b8e4a898ca23a3181ee8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1949904456259578261, guid: 5bf6301561b7b8e4a898ca23a3181ee8,
         type: 3}
       propertyPath: m_RootOrder
@@ -832,21 +827,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707545480458550010, guid: b7e361d5104195d41855d9f664cd7f5a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5769953491898972420, guid: b7e361d5104195d41855d9f664cd7f5a,
-        type: 3}
-      propertyPath: maxFireDelay
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5769953491898972420, guid: b7e361d5104195d41855d9f664cd7f5a,
-        type: 3}
-      propertyPath: minFireDelay
-      value: 0.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7e361d5104195d41855d9f664cd7f5a, type: 3}
@@ -1052,16 +1032,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6064264445890191594, guid: d31a5ea0be3b06e4a8fdaa7cbf276ce3,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerGoalTrigger
-      objectReference: {fileID: 0}
-    - target: {fileID: 7209513041872166984, guid: d31a5ea0be3b06e4a8fdaa7cbf276ce3,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyGoalTrigger
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d31a5ea0be3b06e4a8fdaa7cbf276ce3, type: 3}
 --- !u!4 &4237649744620406324 stripped
@@ -1101,26 +1071,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1833256368}
     m_Modifications:
-    - target: {fileID: 7084352126595193378, guid: d714f3669d2437e46a35ba9b1e3547fa,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 48
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084352126595193378, guid: d714f3669d2437e46a35ba9b1e3547fa,
-        type: 3}
-      propertyPath: m_fontSizeBase
-      value: 48
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084352126595193380, guid: d714f3669d2437e46a35ba9b1e3547fa,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084352126595193380, guid: d714f3669d2437e46a35ba9b1e3547fa,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7084352127406273133, guid: d714f3669d2437e46a35ba9b1e3547fa,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1230,26 +1180,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ScoreUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084352127971960172, guid: d714f3669d2437e46a35ba9b1e3547fa,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 48
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084352127971960172, guid: d714f3669d2437e46a35ba9b1e3547fa,
-        type: 3}
-      propertyPath: m_fontSizeBase
-      value: 48
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084352127971960174, guid: d714f3669d2437e46a35ba9b1e3547fa,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084352127971960174, guid: d714f3669d2437e46a35ba9b1e3547fa,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d714f3669d2437e46a35ba9b1e3547fa, type: 3}

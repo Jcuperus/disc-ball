@@ -715,7 +715,7 @@ GameObject:
   - component: {fileID: 1756045824702766606}
   - component: {fileID: 3434751029704170201}
   m_Layer: 6
-  m_Name: GoalTrigger
+  m_Name: PlayerGoalTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -938,7 +938,7 @@ GameObject:
   - component: {fileID: 7026730450871574021}
   - component: {fileID: 8018581769053642738}
   m_Layer: 6
-  m_Name: GoalTrigger (1)
+  m_Name: EnemyGoalTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

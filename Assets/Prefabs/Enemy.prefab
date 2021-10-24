@@ -90,6 +90,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  rotationSpeed: 8
+  minFireDelay: 0.15
+  maxFireDelay: 0.5
+  fireRotationMin: 190
+  fireRotationMax: 350
 --- !u!1001 &9060919218621252605
 PrefabInstance:
   m_ObjectHideFlags: 0
