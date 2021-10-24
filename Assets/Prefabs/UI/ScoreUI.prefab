@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7084352126595193377}
   - component: {fileID: 7084352126595193378}
   - component: {fileID: 7084352126595193379}
+  - component: {fileID: 622197747}
+  - component: {fileID: 622197750}
   m_Layer: 5
   m_Name: ScoreLabel
   m_TagString: Untagged
@@ -149,6 +151,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!95 &622197747
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7084352126595193381}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8a8a231485b66aa4492f6e9ff9fe33cd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &622197750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7084352126595193381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da993cb03483660429a3d38fcd222181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7084352127406273134
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,8 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68bd35c25b76fd440a618cf0a3549595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScoreLabel: {fileID: 7084352126595193378}
-  enemyScoreLabel: {fileID: 7084352127971960172}
+  playerScoreLabel: {fileID: 622197750}
+  enemyScoreLabel: {fileID: 1658549522}
 --- !u!1 &7084352127582449581
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,6 +322,8 @@ GameObject:
   - component: {fileID: 7084352127971960171}
   - component: {fileID: 7084352127971960172}
   - component: {fileID: 7084352127971960173}
+  - component: {fileID: 1658549519}
+  - component: {fileID: 1658549522}
   m_Layer: 5
   m_Name: ScoreLabel
   m_TagString: Untagged
@@ -426,6 +461,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!95 &1658549519
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7084352127971960175}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8a8a231485b66aa4492f6e9ff9fe33cd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1658549522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7084352127971960175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da993cb03483660429a3d38fcd222181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7084352128099245179
 GameObject:
   m_ObjectHideFlags: 0

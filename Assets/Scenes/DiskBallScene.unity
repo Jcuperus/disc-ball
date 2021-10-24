@@ -208,43 +208,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.000002, y: 0.79999995, z: 0.10000004}
   m_Center: {x: 0, y: 0.39999998, z: 0}
---- !u!1 &622197745 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7084352126595193381, guid: d714f3669d2437e46a35ba9b1e3547fa,
-    type: 3}
-  m_PrefabInstance: {fileID: 7084352127826491983}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &622197746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 622197745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da993cb03483660429a3d38fcd222181, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!95 &622197747
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 622197745}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8a8a231485b66aa4492f6e9ff9fe33cd, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &625106104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -572,43 +535,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2805069787010852048}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1658549517 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7084352127971960175, guid: d714f3669d2437e46a35ba9b1e3547fa,
-    type: 3}
-  m_PrefabInstance: {fileID: 7084352127826491983}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1658549518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1658549517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da993cb03483660429a3d38fcd222181, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!95 &1658549519
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1658549517}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8a8a231485b66aa4492f6e9ff9fe33cd, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1733656209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,6 +1091,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1833256368}
     m_Modifications:
+    - target: {fileID: 7084352126595193378, guid: d714f3669d2437e46a35ba9b1e3547fa,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 7084352126595193378, guid: d714f3669d2437e46a35ba9b1e3547fa,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 48
+      objectReference: {fileID: 0}
     - target: {fileID: 7084352126595193380, guid: d714f3669d2437e46a35ba9b1e3547fa,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -1175,16 +1111,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7084352127406273132, guid: d714f3669d2437e46a35ba9b1e3547fa,
-        type: 3}
-      propertyPath: enemyScoreLabel
-      value: 
-      objectReference: {fileID: 1658549518}
-    - target: {fileID: 7084352127406273132, guid: d714f3669d2437e46a35ba9b1e3547fa,
-        type: 3}
-      propertyPath: playerScoreLabel
-      value: 
-      objectReference: {fileID: 622197746}
     - target: {fileID: 7084352127406273133, guid: d714f3669d2437e46a35ba9b1e3547fa,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1294,6 +1220,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ScoreUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 7084352127971960172, guid: d714f3669d2437e46a35ba9b1e3547fa,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 7084352127971960172, guid: d714f3669d2437e46a35ba9b1e3547fa,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 7084352127971960174, guid: d714f3669d2437e46a35ba9b1e3547fa,
         type: 3}
