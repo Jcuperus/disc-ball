@@ -80,7 +80,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private IEnumerator StartRoundCoroutine()
     {
-        yield return CountDownCoroutine(newRoundCountdownAmount);
+        yield return CountdownHelper.CountDownCoroutine(newRoundCountdownAmount);
         
         state = GameState.Running;
         
@@ -88,17 +88,6 @@ public class GameManager : MonoSingleton<GameManager>
         Vector3 initialDiscVelocity = Random.Range(0, 2) > 0 ? Vector3.left : Vector3.right;
         DiscInstance.velocity = initialDiscVelocity;
         DiscInstance.gameObject.SetActive(true);
-    }
-
-    private IEnumerator CountDownCoroutine(int counter)
-    {
-        for (int i = counter; i > 0; i--)
-        {
-            Debug.Log(counter);
-
-            counter--;
-            yield return new WaitForSeconds(1);
-        }
     }
 
     private void EndRound()
