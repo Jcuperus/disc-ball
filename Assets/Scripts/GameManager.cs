@@ -22,7 +22,7 @@ public class GameManager : MonoSingleton<GameManager>
             set
             {
                 playerScore = value;
-                OnScoreChanged.Invoke();
+                OnPlayerScoreChanged.Invoke();
             }
         }
         
@@ -32,13 +32,13 @@ public class GameManager : MonoSingleton<GameManager>
             set
             {
                 enemyScore = value;
-                OnScoreChanged.Invoke();
+                OnEnemyScoreChanged.Invoke();
             }
         }
 
         private int playerScore, enemyScore;
         
-        public Action OnScoreChanged;
+        public Action OnPlayerScoreChanged, OnEnemyScoreChanged;
     }
     
     public ScoreData Score;
