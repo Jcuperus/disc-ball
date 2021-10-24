@@ -1,20 +1,14 @@
-using System.Collections;
 using Helpers;
-using TMPro;
 using UnityEngine;
 
 namespace UI
 {
     public class CountdownUIController : MonoBehaviour
     {
-        [SerializeField] private TMP_Text countdownLabel;
-        [SerializeField] private Animator labelAnimator;
+        [SerializeField] private FadeInLabel countdownLabel;
 
         private GameObject panel;
-
-        private static readonly int FadeInTrigger = Animator.StringToHash("FadeIn");
-        private static readonly int FadeOutTrigger = Animator.StringToHash("FadeOut");
-
+        private int count;
 
         private void Awake()
         {
@@ -22,24 +16,22 @@ namespace UI
             panel.SetActive(false);
             
             CountdownHelper.OnCountChanged += UpdateCounter;
+            countdownLabel.OnFadeOutFinished += OnLabelFadeOut;
         }
 
-        private void UpdateCounter(int count)
+        private void UpdateCounter(int newCount)
+        {
+            if (!panel.activeSelf) panel.SetActive(true);
+
+            count = newCount;
+            countdownLabel.FadeOut();
+        }
+        
+        private void OnLabelFadeOut()
         {
             if (count <= 0) panel.SetActive(false);
-            else if (!panel.activeSelf) panel.SetActive(true);
-
-            StartCoroutine(LabelFadeCoroutine(count));
-        }
-
-        private IEnumerator LabelFadeCoroutine(int newCount)
-        {
-            labelAnimator.SetTrigger(FadeOutTrigger);
-
-            yield return new WaitForSeconds(labelAnimator.GetCurrentAnimatorStateInfo(0).length);
             
-            countdownLabel.text = newCount.ToString();
-            labelAnimator.SetTrigger(FadeInTrigger);
+            countdownLabel.FadeIn(count.ToString());
         }
     }
 }

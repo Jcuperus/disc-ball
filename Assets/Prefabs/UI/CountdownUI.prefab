@@ -125,8 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39242638a982e6e44b90267a25f3b2e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownLabel: {fileID: 2805069788929593206}
-  labelAnimator: {fileID: 1940024232}
+  countdownLabel: {fileID: 5473852929062399879}
 --- !u!1 &2805069788929593203
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,6 +139,7 @@ GameObject:
   - component: {fileID: 2805069788929593206}
   - component: {fileID: 2805069788929593205}
   - component: {fileID: 1940024232}
+  - component: {fileID: 5473852929062399879}
   m_Layer: 5
   m_Name: CountdownLabel
   m_TagString: Untagged
@@ -296,3 +296,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5473852929062399879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2805069788929593203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da993cb03483660429a3d38fcd222181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
