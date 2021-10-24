@@ -5,15 +5,14 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] private float speed = 2f;
-
+    [SerializeField] private float minFireDelay = 0.5f, maxFireDelay = 1.5f;
+    [SerializeField] private float fireRotationMin = 190f, fireRotationMax = 350f;
+    
     private HoldsDiscBehaviour holdsDiscBehaviour;
     private SimpleMovementController movementController;
     private Transform discTransform;
     
-    private const float MinFireDelay = 0.5f;
-    private const float MaxFireDelay = 1.5f;
-    private const float RotationMin = 180f;
-    private const float RotationMax = 360f;
+    
     
     private void Start()
     {
@@ -34,7 +33,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void FireInRandomDirection()
     {
-        transform.rotation = Quaternion.Euler(0, Random.Range(RotationMin, RotationMax), 0);
+        transform.rotation = Quaternion.Euler(0, Random.Range(fireRotationMin, fireRotationMax), 0);
         holdsDiscBehaviour.FireDisc();
     }
 
@@ -52,7 +51,7 @@ public class EnemyBehaviour : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             if (holdsDiscBehaviour.HasDisc)
             {
-                yield return new WaitForSeconds(Random.Range(MinFireDelay, MaxFireDelay));
+                yield return new WaitForSeconds(Random.Range(minFireDelay, maxFireDelay));
                 FireInRandomDirection();
             }
         }
