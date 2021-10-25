@@ -43,6 +43,20 @@ public class GameManager : MonoSingleton<GameManager>
     
     public ScoreData Score;
     
+    public static void TogglePause()
+    {
+        if (StateManager.State != StateManager.GameState.Paused)
+        {
+            StateManager.State = StateManager.GameState.Paused;
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            StateManager.State = StateManager.PreviousState;
+            Time.timeScale = 1f;
+        }
+    }
+    
     protected override void Awake()
     {
         base.Awake();
@@ -58,20 +72,6 @@ public class GameManager : MonoSingleton<GameManager>
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) TogglePause();
-    }
-
-    private void TogglePause()
-    {
-        if (StateManager.State != StateManager.GameState.Paused)
-        {
-            StateManager.State = StateManager.GameState.Paused;
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            StateManager.State = StateManager.PreviousState;
-            Time.timeScale = 1f;
-        }
     }
 
     private void OnGoalScored(bool isPlayerGoal)
