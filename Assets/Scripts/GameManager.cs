@@ -46,10 +46,12 @@ public class GameManager : MonoSingleton<GameManager>
     private enum GameState
     {
         Running,
-        RoundEnded
+        RoundEnded,
+        Paused
     }
 
     private GameState state = GameState.Running;
+    private GameState previousState = GameState.Running;
     
     protected override void Awake()
     {
@@ -61,6 +63,26 @@ public class GameManager : MonoSingleton<GameManager>
         DiscInstance = Instantiate(discPrefab);
         DiscInstance.gameObject.SetActive(false);
         StartRound();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) TogglePause();
+    }
+
+    private void TogglePause()
+    {
+        if (state != GameState.Paused)
+        {
+            previousState = state;
+            state = GameState.Paused;
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            state = previousState;
+            Time.timeScale = 1f;
+        }
     }
 
     private void OnGoalScored(bool isPlayerGoal)
