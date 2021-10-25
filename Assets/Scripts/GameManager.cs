@@ -42,16 +42,6 @@ public class GameManager : MonoSingleton<GameManager>
     }
     
     public ScoreData Score;
-
-    private enum GameState
-    {
-        Running,
-        RoundEnded,
-        Paused
-    }
-
-    private GameState state = GameState.Running;
-    private GameState previousState = GameState.Running;
     
     protected override void Awake()
     {
@@ -72,22 +62,21 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void TogglePause()
     {
-        if (state != GameState.Paused)
+        if (StateManager.State != StateManager.GameState.Paused)
         {
-            previousState = state;
-            state = GameState.Paused;
+            StateManager.State = StateManager.GameState.Paused;
             Time.timeScale = 0f;
         }
         else
         {
-            state = previousState;
+            StateManager.State = StateManager.PreviousState;
             Time.timeScale = 1f;
         }
     }
 
     private void OnGoalScored(bool isPlayerGoal)
     {
-        if (state != GameState.Running) return;
+        if (StateManager.State != StateManager.GameState.Running) return;
         
         if (isPlayerGoal) Score.PlayerScore++;
         else Score.EnemyScore++;
@@ -104,7 +93,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         yield return CountdownHelper.CountDownCoroutine(newRoundCountdownAmount);
         
-        state = GameState.Running;
+        StateManager.State = StateManager.GameState.Running;
         
         DiscInstance.transform.position = discSpawnPosition;
         Vector3 initialDiscVelocity = Random.Range(0, 2) > 0 ? Vector3.left : Vector3.right;
@@ -114,7 +103,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void EndRound()
     {
-        state = GameState.RoundEnded;
+        StateManager.State = StateManager.GameState.RoundEnded;
         
         this.DelayedAction(() =>
         {
