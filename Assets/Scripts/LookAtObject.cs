@@ -1,4 +1,3 @@
-using Helpers;
 using UnityEngine;
 
 public class LookAtObject : MonoBehaviour
