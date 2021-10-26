@@ -91,6 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   rotationSpeed: 8
+  minMoveAmount: 0.02
   minFireDelay: 0.15
   maxFireDelay: 0.5
   fireRotationMin: 190
