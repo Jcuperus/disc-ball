@@ -176,6 +176,5 @@ MonoBehaviour:
   actorMask:
     serializedVersion: 2
     m_Bits: 128
-  initialVelocity: {x: 0, y: 0, z: 1}
   speed: 18
   actorCollisionDelay: 0.1
