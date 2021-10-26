@@ -461,6 +461,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2805069787010852048}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1562774151 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1712553668538684750, guid: d714f3669d2437e46a35ba9b1e3547fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 7084352127826491983}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef59893ceb3ed14a82c9119bf5f8ced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1599798683
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,6 +700,7 @@ MonoBehaviour:
   discSpawnPosition: {x: 0, y: 1.1, z: 0}
   newRoundCountdownAmount: 3
   roundEndDelay: 0.1
+  setPoints: 5
 --- !u!4 &1733656211
 Transform:
   m_ObjectHideFlags: 0
@@ -1283,6 +1296,18 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1997150836 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1949911875315663191, guid: d714f3669d2437e46a35ba9b1e3547fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 7084352127826491983}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef59893ceb3ed14a82c9119bf5f8ced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2067007522 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7084352127406273133, guid: d714f3669d2437e46a35ba9b1e3547fa,
@@ -1424,11 +1449,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 5769953491898972420, guid: b7e361d5104195d41855d9f664cd7f5a,
-        type: 3}
-      propertyPath: minMoveAmount
-      value: 0.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7e361d5104195d41855d9f664cd7f5a, type: 3}
@@ -1782,6 +1802,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1833256368}
     m_Modifications:
+    - target: {fileID: 434788347749026611, guid: d714f3669d2437e46a35ba9b1e3547fa,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 434788347749026611, guid: d714f3669d2437e46a35ba9b1e3547fa,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712553668538684750, guid: d714f3669d2437e46a35ba9b1e3547fa,
+        type: 3}
+      propertyPath: nodePrefab
+      value: 
+      objectReference: {fileID: 931297231061308049, guid: ed63e54b0b2d8b84a8ef67959e9f938c,
+        type: 3}
     - target: {fileID: 7084352126595193380, guid: d714f3669d2437e46a35ba9b1e3547fa,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -1792,6 +1828,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7084352127406273132, guid: d714f3669d2437e46a35ba9b1e3547fa,
+        type: 3}
+      propertyPath: enemySetCounter
+      value: 
+      objectReference: {fileID: 1562774151}
+    - target: {fileID: 7084352127406273132, guid: d714f3669d2437e46a35ba9b1e3547fa,
+        type: 3}
+      propertyPath: playerSetCounter
+      value: 
+      objectReference: {fileID: 1997150836}
     - target: {fileID: 7084352127406273133, guid: d714f3669d2437e46a35ba9b1e3547fa,
         type: 3}
       propertyPath: m_Pivot.x

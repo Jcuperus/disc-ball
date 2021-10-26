@@ -11,38 +11,10 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] private Vector3 discSpawnPosition;
     [SerializeField, Min(0)] private int newRoundCountdownAmount = 3;
     [SerializeField] private float roundEndDelay = 0.1f;
+    [SerializeField, Min(1)] private int setPoints = 5;
     
     [NonSerialized] public DiscBehaviour DiscInstance;
-    
-    public struct ScoreData
-    {
-        public int PlayerScore
-        {
-            get => playerScore;
-            set
-            {
-                playerScore = value;
-                OnPlayerScoreChanged.Invoke();
-            }
-        }
-        
-        public int EnemyScore
-        {
-            get => enemyScore;
-            set
-            {
-                enemyScore = value;
-                OnEnemyScoreChanged.Invoke();
-            }
-        }
 
-        private int playerScore, enemyScore;
-        
-        public Action OnPlayerScoreChanged, OnEnemyScoreChanged;
-    }
-    
-    public ScoreData Score;
-    
     public static void TogglePause()
     {
         if (StateManager.State != StateManager.GameState.Paused)
@@ -77,9 +49,11 @@ public class GameManager : MonoSingleton<GameManager>
     private void OnGoalScored(bool isPlayerGoal)
     {
         if (StateManager.State != StateManager.GameState.Running) return;
-        
-        if (isPlayerGoal) Score.PlayerScore++;
-        else Score.EnemyScore++;
+
+        if (isPlayerGoal) ScoreManager.PlayerScore++;
+        else ScoreManager.EnemyScore++;
+
+        CheckSetEnded();
 
         EndRound();
     }
@@ -110,5 +84,27 @@ public class GameManager : MonoSingleton<GameManager>
             DiscInstance.gameObject.SetActive(false);
             StartRound();
         }, roundEndDelay);
+    }
+
+    private void CheckSetEnded()
+    {
+        bool setHasEnded = false;
+        
+        if (ScoreManager.PlayerScore >= setPoints)
+        {
+            ScoreManager.PlayerSets++;
+            setHasEnded = true;
+        }
+
+        if (ScoreManager.EnemyScore >= setPoints)
+        {
+            ScoreManager.EnemySets++;
+            setHasEnded = true;
+        }
+
+        if (setHasEnded)
+        {
+            ScoreManager.PlayerScore = ScoreManager.EnemyScore = 0;
+        }
     }
 }
