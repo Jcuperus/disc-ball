@@ -6,6 +6,8 @@ namespace UI
     [RequireComponent(typeof(TMP_Text))]
     public class TextButton : MonoBehaviour
     {
+        [SerializeField] private FontStyles selectedStyles;
+        
         private TMP_Text label;
         
         private void Awake()
@@ -15,12 +17,12 @@ namespace UI
 
         public void Select()
         {
-            label.fontStyle |= FontStyles.Underline;
+            label.fontStyle |= selectedStyles;
         }
 
         public void Deselect()
         {
-            label.fontStyle &= ~FontStyles.Underline;
+            label.fontStyle &= ~selectedStyles;
         }
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] private float speed = 2f, rotationSpeed = 8f;
+    [SerializeField] private float minMoveAmount = 0.01f;
     [SerializeField] private float minFireDelay = 0.5f, maxFireDelay = 1.5f;
     [SerializeField] private float fireRotationMin = 190f, fireRotationMax = 350f;
     
@@ -40,7 +41,9 @@ public class EnemyBehaviour : MonoBehaviour
     private void MoveTowardsDisc()
     {
         Vector3 direction = Vector3.Scale(discTransform.position - transform.position, new Vector3(0, 0, 1f));
-        
+
+        if (Mathf.Abs(direction.z) < minMoveAmount) direction.z = 0f;
+
         movementController.Move(speed * Time.deltaTime * direction.normalized, Space.World);
     }
 
