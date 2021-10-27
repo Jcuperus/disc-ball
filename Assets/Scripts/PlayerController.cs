@@ -1,4 +1,4 @@
-﻿using MovementControllers;
+﻿using Helpers;
 using UnityEngine;
 
 [RequireComponent(typeof(HoldsDiscBehaviour), typeof(SimpleMovementController))]
@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private HoldsDiscBehaviour holdsDiscBehaviour;
     private SimpleMovementController movementController;
     
-    private void Start()
+    private void Awake()
     {
         holdsDiscBehaviour = GetComponent<HoldsDiscBehaviour>();
         movementController = GetComponent<SimpleMovementController>();
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         MovePlayer();
         FireDisc();
     }
-    
+
     private void LookAtMouse()
     {
         if (!Camera.main) return;
@@ -31,8 +31,8 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(mouseRay, out RaycastHit raycastHit, 100))
         {
             Vector3 direction = (raycastHit.point - transform.position).normalized;
-            Quaternion lookRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Euler(0, Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime).eulerAngles.y, 0);
+            Quaternion lookRotation = Quaternion.Euler(0f, MathHelper.GetVectorAngle(direction), 0f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
         }
     }
 

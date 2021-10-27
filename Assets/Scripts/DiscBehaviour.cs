@@ -1,18 +1,19 @@
-﻿using Helpers;
+﻿using System;
+using Helpers;
 using UnityEngine;
-using MovementControllers;
 
 [RequireComponent(typeof(SimpleMovementController))]
 public class DiscBehaviour : MonoBehaviour
 {
     [SerializeField] private LayerMask actorMask;
-    [SerializeField] private Vector3 initialVelocity;
     [SerializeField] private float speed = 18f;
     [SerializeField] private float actorCollisionDelay = 0.1f;
 
+    [NonSerialized] public Vector3 velocity;
+    
+    public bool isBeingHeld;
+    
     private SimpleMovementController discController;
-    private Vector3 velocity;
-    private bool isFollowing;
     
     private const float YOffset = 1.23f;
     private const float ParentZOffset = 0.4f;
@@ -22,14 +23,20 @@ public class DiscBehaviour : MonoBehaviour
         discController = GetComponent<SimpleMovementController>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        LaunchDisc(initialVelocity.normalized);
+        LaunchDisc(velocity);
+    }
+
+    private void OnDisable()
+    {
+        velocity = Vector3.zero;
+        isBeingHeld = false;
     }
 
     private void Update()
     {
-        if (isFollowing) return;
+        if (isBeingHeld) return;
         
         discController.Move(speed * Time.deltaTime * velocity);
 
@@ -39,17 +46,9 @@ public class DiscBehaviour : MonoBehaviour
         }
     }
     
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Goal"))
-        {
-            Debug.Log("Goal scored");
-        }
-    }
-    
     public void LaunchDiscFromParent()
     {
-        if (!isFollowing) return;
+        if (!isBeingHeld) return;
 
         Transform discTransform = transform;
         Vector3 direction = MathHelper.GetAngleVector(discTransform.parent.eulerAngles.y);
@@ -80,7 +79,7 @@ public class DiscBehaviour : MonoBehaviour
     private void LaunchDisc(Vector3 newVelocity)
     {
         velocity = newVelocity;
-        isFollowing = false;
+        isBeingHeld = false;
     }
     
     private void FollowObject(GameObject parentObject)
@@ -89,6 +88,6 @@ public class DiscBehaviour : MonoBehaviour
         Transform discTransform = transform;
         discTransform.SetParent(parentObject.transform);
         discTransform.localPosition = new Vector3(0, YOffset, ParentZOffset);
-        isFollowing = true;
+        isBeingHeld = true;
     }
 }
