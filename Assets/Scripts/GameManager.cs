@@ -16,6 +16,8 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField, Min(0)] private int newRoundCountdownAmount = 3;
     [SerializeField] private float roundEndDelay = 0.1f;
 
+    public Action<bool> OnGameEnd;
+    
     protected override void Awake()
     {
         base.Awake();
@@ -63,15 +65,13 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void EndRound()
     {
+        DiscInstance.gameObject.SetActive(false);
+
         if (StateManager.State == StateManager.GameState.GameEnded) return;
         
         StateManager.State = StateManager.GameState.RoundEnded;
         
-        this.DelayedAction(() =>
-        {
-            DiscInstance.gameObject.SetActive(false);
-            StartRound();
-        }, roundEndDelay);
+        this.DelayedAction(StartRound, roundEndDelay);
     }
 
     private void CheckSetEnded()
@@ -109,7 +109,6 @@ public class GameManager : MonoSingleton<GameManager>
     private void EndGame(bool redWins)
     {
         StateManager.State = StateManager.GameState.GameEnded;
-        
-        ScoreManager.Reset();
+        OnGameEnd.Invoke(redWins);
     }
 }

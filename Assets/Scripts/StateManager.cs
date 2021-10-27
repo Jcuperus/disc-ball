@@ -28,6 +28,8 @@ public static class StateManager
     
     public static void TogglePause()
     {
+        if (State == GameState.GameEnded) return;
+        
         if (State != GameState.Paused)
         {
             State = GameState.Paused;
