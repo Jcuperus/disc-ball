@@ -50,8 +50,5 @@ public static class ScoreManager
 
     private static int enemySets;
 
-    //TODO: Move to game configuration
-    public static int SetAmount = 2;
-
     public static Action OnPlayerScoreChanged, OnEnemyScoreChanged, OnPlayerSetsChanged, OnEnemySetsChanged;
 }

@@ -21,7 +21,7 @@ namespace UI
 
         public void OnResumeClicked()
         {
-            GameManager.TogglePause();
+            StateManager.TogglePause();
         }
 
         public void OnQuitClicked()

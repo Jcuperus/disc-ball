@@ -19,12 +19,14 @@ namespace UI
         }
 
         private int setCount;
+        private int setAmount;
         
         private RectTransform rectTransform;
 
-        private void Awake()
+        private void Start()
         {
             rectTransform = GetComponent<RectTransform>();
+            setAmount = GameManager.Instance.gameConfiguration.gameSets;
         }
 
         private void UpdateCounter()
@@ -34,7 +36,7 @@ namespace UI
                 Destroy(transform.GetChild(i).gameObject);
             }
 
-            float nodeHeight = rectTransform.rect.height / ScoreManager.SetAmount;
+            float nodeHeight = rectTransform.rect.height / setAmount;
             
             for (int i = 0; i < SetCount; i++)
             {

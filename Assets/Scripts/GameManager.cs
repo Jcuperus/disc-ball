@@ -6,29 +6,16 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoSingleton<GameManager>
 {
+    [NonSerialized] public DiscBehaviour DiscInstance;
+
+    public GameConfigurationData gameConfiguration;
+    
     [SerializeField] private GoalTrigger playerGoal, enemyGoal;
     [SerializeField] private DiscBehaviour discPrefab;
     [SerializeField] private Vector3 discSpawnPosition;
     [SerializeField, Min(0)] private int newRoundCountdownAmount = 3;
     [SerializeField] private float roundEndDelay = 0.1f;
-    [SerializeField, Min(1)] private int setPoints = 5;
-    
-    [NonSerialized] public DiscBehaviour DiscInstance;
 
-    public static void TogglePause()
-    {
-        if (StateManager.State != StateManager.GameState.Paused)
-        {
-            StateManager.State = StateManager.GameState.Paused;
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            StateManager.State = StateManager.PreviousState;
-            Time.timeScale = 1f;
-        }
-    }
-    
     protected override void Awake()
     {
         base.Awake();
@@ -43,7 +30,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) TogglePause();
+        if (Input.GetKeyDown(KeyCode.Escape)) StateManager.TogglePause();
     }
 
     private void OnGoalScored(bool isPlayerGoal)
@@ -90,13 +77,13 @@ public class GameManager : MonoSingleton<GameManager>
     {
         bool setHasEnded = false;
         
-        if (ScoreManager.PlayerScore >= setPoints)
+        if (ScoreManager.PlayerScore >= gameConfiguration.setPoints)
         {
             ScoreManager.PlayerSets++;
             setHasEnded = true;
         }
 
-        if (ScoreManager.EnemyScore >= setPoints)
+        if (ScoreManager.EnemyScore >= gameConfiguration.setPoints)
         {
             ScoreManager.EnemySets++;
             setHasEnded = true;
@@ -104,7 +91,21 @@ public class GameManager : MonoSingleton<GameManager>
 
         if (setHasEnded)
         {
+            CheckVictory();
+            
             ScoreManager.PlayerScore = ScoreManager.EnemyScore = 0;
+        }
+    }
+
+    private void CheckVictory()
+    {
+        if (ScoreManager.PlayerSets >= gameConfiguration.gameSets)
+        {
+            Debug.Log("Player wins");
+        }
+        else if (ScoreManager.EnemySets >= gameConfiguration.gameSets)
+        {
+            Debug.Log("Enemy wins");
         }
     }
 }

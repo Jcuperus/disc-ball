@@ -693,6 +693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c960c32c033c942b48cfbf687abd14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameConfiguration: {fileID: 11400000, guid: 89ea74b8ad26f6846b45bb630cb10dfd, type: 2}
   playerGoal: {fileID: 4237649744620406326}
   enemyGoal: {fileID: 4237649744620406325}
   discPrefab: {fileID: -7728553324131716774, guid: d3096388c80ddc648aa762e3400d9293,
@@ -700,7 +701,6 @@ MonoBehaviour:
   discSpawnPosition: {x: 0, y: 1.1, z: 0}
   newRoundCountdownAmount: 3
   roundEndDelay: 0.1
-  setPoints: 5
 --- !u!4 &1733656211
 Transform:
   m_ObjectHideFlags: 0

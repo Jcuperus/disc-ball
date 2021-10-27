@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 public static class StateManager
 {
@@ -14,15 +15,27 @@ public static class StateManager
         get => state;
         set
         {
-            PreviousState = state;
+            previousState = state;
             state = value;
             OnStateChanged.Invoke(state);
         }
     }
     
-    private static GameState state = GameState.Running;
+    private static GameState state = GameState.Running, previousState = GameState.Running;
     
     public static Action<GameState> OnStateChanged;
-
-    public static GameState PreviousState { get; private set; }
+    
+    public static void TogglePause()
+    {
+        if (State != GameState.Paused)
+        {
+            State = GameState.Paused;
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            State = previousState;
+            Time.timeScale = 1f;
+        }
+    }
 }
