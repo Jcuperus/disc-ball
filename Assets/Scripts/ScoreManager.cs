@@ -2,53 +2,43 @@
 
 public static class ScoreManager
 {
-    public static int PlayerScore
+    public class ScoreData
     {
-        get => playerScore;
-        set
+        public int Points
         {
-            playerScore = value;
-            OnPlayerScoreChanged.Invoke();
+            get => points;
+            set
+            {
+                points = value;
+                OnDataChanged.Invoke(this);
+            }
         }
+
+        private int points;
+
+        public int Sets
+        {
+            get => sets;
+            set
+            {
+                sets = value;
+                OnDataChanged.Invoke(this);
+            }
+        }
+
+        private int sets;
+
+        public Action<ScoreData> OnDataChanged;
     }
 
-    private static int playerScore;
+    public static readonly ScoreData RedScore = new ScoreData();
+    public static readonly ScoreData BlueScore = new ScoreData();
 
-    public static int EnemyScore
+    public static void ResetPoints() => RedScore.Points = BlueScore.Points = 0;
+
+    public static void Reset()
     {
-        get => enemyScore;
-        set
-        {
-            enemyScore = value;
-            OnEnemyScoreChanged.Invoke();
-        }
+        ResetPoints();
+        RedScore.Sets = BlueScore.Sets = 0;
     }
-
-    private static int enemyScore;
-
-    public static int PlayerSets
-    {
-        get => playerSets;
-        set
-        {
-            playerSets = value;
-            OnPlayerSetsChanged.Invoke();
-        }
-    }
-
-    private static int playerSets;
-    
-    public static int EnemySets
-    {
-        get => enemySets;
-        set
-        {
-            enemySets = value;
-            OnEnemySetsChanged.Invoke();
-        }
-    }
-
-    private static int enemySets;
-
-    public static Action OnPlayerScoreChanged, OnEnemyScoreChanged, OnPlayerSetsChanged, OnEnemySetsChanged;
 }

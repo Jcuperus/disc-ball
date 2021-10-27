@@ -9,17 +9,23 @@ namespace UI
 
         private void Start()
         {
-            playerScoreLabel.OnFadeOutFinished += UpdatePlayerScore;
-            enemyScoreLabel.OnFadeOutFinished += UpdateEnemyScore;
-
-            ScoreManager.OnPlayerScoreChanged += () => playerScoreLabel.FadeOut();
-            ScoreManager.OnEnemyScoreChanged += () => enemyScoreLabel.FadeOut();
-
-            ScoreManager.OnPlayerSetsChanged += () => playerSetCounter.SetCount = ScoreManager.PlayerSets;
-            ScoreManager.OnEnemySetsChanged += () => enemySetCounter.SetCount = ScoreManager.EnemySets;
+            ScoreManager.RedScore.OnDataChanged +=
+                scoreData => UpdateScore(playerScoreLabel, playerSetCounter, scoreData);
+            ScoreManager.BlueScore.OnDataChanged +=
+                scoreData => UpdateScore(enemyScoreLabel, enemySetCounter, scoreData);
         }
-        
-        private void UpdatePlayerScore() => playerScoreLabel.FadeIn(ScoreManager.PlayerScore.ToString());
-        private void UpdateEnemyScore() => enemyScoreLabel.FadeIn(ScoreManager.EnemyScore.ToString());
+
+        private void UpdateScore(FadeInLabel scoreLabel, SetCounter setCounter, ScoreManager.ScoreData score)
+        {
+            if (string.IsNullOrEmpty(scoreLabel.Text) || int.TryParse(scoreLabel.Text, out int oldScore) && oldScore != score.Points)
+            {
+                scoreLabel.FadeOut(() => scoreLabel.FadeIn(score.Points.ToString()));
+            }
+
+            if (setCounter.SetCount != score.Sets)
+            {
+                setCounter.SetCount = score.Sets;
+            }
+        }
     }
 }

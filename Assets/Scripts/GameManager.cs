@@ -37,11 +37,10 @@ public class GameManager : MonoSingleton<GameManager>
     {
         if (StateManager.State != StateManager.GameState.Running) return;
 
-        if (isPlayerGoal) ScoreManager.PlayerScore++;
-        else ScoreManager.EnemyScore++;
+        ScoreManager.ScoreData scorerData = isPlayerGoal ? ScoreManager.RedScore : ScoreManager.BlueScore;
+        scorerData.Points++;
 
         CheckSetEnded();
-
         EndRound();
     }
 
@@ -64,6 +63,8 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void EndRound()
     {
+        if (StateManager.State == StateManager.GameState.GameEnded) return;
+        
         StateManager.State = StateManager.GameState.RoundEnded;
         
         this.DelayedAction(() =>
@@ -76,36 +77,39 @@ public class GameManager : MonoSingleton<GameManager>
     private void CheckSetEnded()
     {
         bool setHasEnded = false;
-        
-        if (ScoreManager.PlayerScore >= gameConfiguration.setPoints)
-        {
-            ScoreManager.PlayerSets++;
-            setHasEnded = true;
-        }
 
-        if (ScoreManager.EnemyScore >= gameConfiguration.setPoints)
+        foreach (ScoreManager.ScoreData scoreData in new[] { ScoreManager.RedScore, ScoreManager.BlueScore })
         {
-            ScoreManager.EnemySets++;
-            setHasEnded = true;
+            if (scoreData.Points >= gameConfiguration.setPoints)
+            {
+                scoreData.Sets++;
+                setHasEnded = true;
+            }
         }
 
         if (setHasEnded)
         {
             CheckVictory();
-            
-            ScoreManager.PlayerScore = ScoreManager.EnemyScore = 0;
+            ScoreManager.ResetPoints();
         }
     }
 
     private void CheckVictory()
     {
-        if (ScoreManager.PlayerSets >= gameConfiguration.gameSets)
+        if (ScoreManager.RedScore.Sets >= gameConfiguration.gameSets)
         {
-            Debug.Log("Player wins");
+            EndGame(true);
         }
-        else if (ScoreManager.EnemySets >= gameConfiguration.gameSets)
+        else if (ScoreManager.BlueScore.Sets >= gameConfiguration.gameSets)
         {
-            Debug.Log("Enemy wins");
+            EndGame(false);
         }
+    }
+
+    private void EndGame(bool redWins)
+    {
+        StateManager.State = StateManager.GameState.GameEnded;
+        
+        ScoreManager.Reset();
     }
 }

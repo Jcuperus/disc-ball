@@ -7,6 +7,7 @@ public static class StateManager
     {
         Running,
         RoundEnded,
+        GameEnded,
         Paused
     }
 

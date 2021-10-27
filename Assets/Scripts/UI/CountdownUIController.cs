@@ -16,7 +16,6 @@ namespace UI
             panel.SetActive(false);
             
             CountdownHelper.OnCountChanged += UpdateCounter;
-            countdownLabel.OnFadeOutFinished += OnLabelFadeOut;
         }
 
         private void UpdateCounter(int newCount)
@@ -24,7 +23,7 @@ namespace UI
             if (!panel.activeSelf) panel.SetActive(true);
 
             count = newCount;
-            countdownLabel.FadeOut();
+            countdownLabel.FadeOut(OnLabelFadeOut);
         }
         
         private void OnLabelFadeOut()

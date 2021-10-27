@@ -8,7 +8,7 @@ namespace UI
     [RequireComponent(typeof(Animator), typeof(TMP_Text))]
     public class FadeInLabel : MonoBehaviour
     {
-        public Action OnFadeOutFinished;
+        public string Text => label.text;
         
         private Animator animator;
         private TMP_Text label;
@@ -31,7 +31,12 @@ namespace UI
         public void FadeOut()
         {
             animator.SetTrigger(FadeOutTrigger);
-            this.DelayedAction(OnFadeOutFinished, GetCurrentAnimationDuration());
+        }
+        
+        public void FadeOut(Action callback)
+        {
+            FadeOut();
+            this.DelayedAction(callback, GetCurrentAnimationDuration());
         }
 
         private float GetCurrentAnimationDuration()
