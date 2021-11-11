@@ -26,7 +26,8 @@ namespace UI
 
         public void Restart()
         {
-            //TODO: implement restart
+            panel.SetActive(false);
+            GameManager.Instance.StartGame();
         }
 
         public void Quit()
