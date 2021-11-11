@@ -1,11 +1,12 @@
-﻿using Helpers;
+﻿using System;
+using Helpers;
 using UnityEngine;
 
 [RequireComponent(typeof(SimpleMovementController))]
 public class DiscBehaviour : MonoBehaviour
 {
-    public Vector3 velocity;
-    public bool isBeingHeld;
+    [NonSerialized] public bool isBeingHeld;
+    [NonSerialized] public Vector3 velocity;
     
     [SerializeField] private LayerMask actorMask;
     [SerializeField] private float speed = 18f;
