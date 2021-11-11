@@ -50,12 +50,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
+    m_Left: 5
+    m_Right: 5
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 7
-  m_Spacing: 0
+  m_Spacing: 5
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -77,3 +77,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodePrefab: {fileID: 931297231061308049, guid: 231df3ee14089aa4785a364301a4e622,
     type: 3}
+  nodeSpacing: 5

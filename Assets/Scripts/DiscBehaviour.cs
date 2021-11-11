@@ -1,22 +1,32 @@
-﻿using System;
-using Helpers;
+﻿using Helpers;
 using UnityEngine;
 
 [RequireComponent(typeof(SimpleMovementController))]
 public class DiscBehaviour : MonoBehaviour
 {
+    public Vector3 velocity;
+    public bool isBeingHeld;
+    
     [SerializeField] private LayerMask actorMask;
     [SerializeField] private float speed = 18f;
     [SerializeField] private float actorCollisionDelay = 0.1f;
 
-    [NonSerialized] public Vector3 velocity;
-    
-    public bool isBeingHeld;
-    
     private SimpleMovementController discController;
     
     private const float YOffset = 1.23f;
     private const float ParentZOffset = 0.4f;
+
+    public void LaunchDiscFromParent()
+    {
+        if (!isBeingHeld) return;
+
+        Transform discTransform = transform;
+        Vector3 direction = MathHelper.GetAngleVector(discTransform.parent.eulerAngles.y);
+        discTransform.SetParent(null);
+        discTransform.eulerAngles = Vector3.zero;
+        LaunchDisc(direction);
+        discController.DisableMask(actorMask, actorCollisionDelay);
+    }
 
     private void Awake()
     {
@@ -45,19 +55,7 @@ public class DiscBehaviour : MonoBehaviour
             OnDiscCollision(discController.CollisionInfo.RaycastHit);
         }
     }
-    
-    public void LaunchDiscFromParent()
-    {
-        if (!isBeingHeld) return;
 
-        Transform discTransform = transform;
-        Vector3 direction = MathHelper.GetAngleVector(discTransform.parent.eulerAngles.y);
-        discTransform.SetParent(null);
-        discTransform.eulerAngles = Vector3.zero;
-        LaunchDisc(direction);
-        discController.DisableMask(actorMask, actorCollisionDelay);
-    }
-    
     private void OnDiscCollision(RaycastHit hitInfo)
     {
         GameObject hitObject = hitInfo.collider.gameObject;

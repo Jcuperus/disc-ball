@@ -6,9 +6,9 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    [NonSerialized] public DiscBehaviour DiscInstance;
-
     public GameConfigurationData gameConfiguration;
+    
+    [NonSerialized] public DiscBehaviour DiscInstance;
     
     [SerializeField] private GoalTrigger playerGoal, enemyGoal;
     [SerializeField] private DiscBehaviour discPrefab;

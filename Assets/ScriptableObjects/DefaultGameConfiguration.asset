@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6416b341c6b3432ba2d1a09152f0cbce, type: 3}
   m_Name: DefaultGameConfiguration
   m_EditorClassIdentifier: 
-  setPoints: 5
+  setPoints: 3
   gameSets: 2
