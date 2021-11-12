@@ -6,17 +6,15 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    public GameConfigurationData gameConfiguration;
-    
     [NonSerialized] public DiscBehaviour DiscInstance;
+    public Action<bool> OnGameEnd;
     
     [SerializeField] private GoalTrigger playerGoal, enemyGoal;
     [SerializeField] private DiscBehaviour discPrefab;
     [SerializeField] private Vector3 discSpawnPosition;
     [SerializeField, Min(0)] private int newRoundCountdownAmount = 3;
     [SerializeField] private float roundEndDelay = 0.1f;
-
-    public Action<bool> OnGameEnd;
+    private GameConfigurationData gameConfiguration;
 
     public void StartGame()
     {
@@ -28,6 +26,8 @@ public class GameManager : MonoSingleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
+
+        gameConfiguration = GameConfigurationManager.Instance.GameConfig;
 
         playerGoal.OnGoalScored += () => OnGoalScored(false);
         enemyGoal.OnGoalScored += () => OnGoalScored(true);

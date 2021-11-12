@@ -27,7 +27,7 @@ namespace UI
         private void Start()
         {
             rectTransform = GetComponent<RectTransform>();
-            setAmount = GameManager.Instance.gameConfiguration.gameSets;
+            setAmount = GameConfigurationManager.Instance.GameConfig.gameSets;
         }
 
         private void UpdateCounter()
