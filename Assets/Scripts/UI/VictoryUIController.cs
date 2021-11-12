@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
 namespace UI
@@ -10,20 +11,6 @@ namespace UI
 
         private GameObject panel;
         
-        private void Start()
-        {
-            panel = transform.GetChild(0).gameObject;
-            panel.SetActive(false);
-            
-            GameManager.Instance.OnGameEnd += OnGameEnd;
-        }
-
-        private void OnGameEnd(bool redWins)
-        {
-            victoryLabel.text = redWins ? winMessage : loseMessage;
-            panel.SetActive(true);
-        }
-
         public void Restart()
         {
             panel.SetActive(false);
@@ -33,6 +20,25 @@ namespace UI
         public void Quit()
         {
             Application.Quit();
+        }
+        
+        private void Start()
+        {
+            panel = transform.GetChild(0).gameObject;
+            panel.SetActive(false);
+            
+            GameManager.Instance.OnGameEnd += OnGameEnd;
+        }
+
+        private void OnDisable()
+        {
+            GameManager.Instance.OnGameEnd -= OnGameEnd;
+        }
+
+        private void OnGameEnd(bool redWins)
+        {
+            victoryLabel.text = redWins ? winMessage : loseMessage;
+            panel.SetActive(true);
         }
     }
 }

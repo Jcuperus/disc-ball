@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Helpers;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(HoldsDiscBehaviour), typeof(SimpleMovementController))]
 public class EnemyBehaviour : MonoBehaviour
@@ -14,13 +16,20 @@ public class EnemyBehaviour : MonoBehaviour
     private SimpleMovementController movementController;
     private Transform discTransform;
 
+    private Coroutine holdsDiscCoroutine;
+
     private void Start()
     {
         holdsDiscBehaviour = GetComponent<HoldsDiscBehaviour>();
         movementController = GetComponent<SimpleMovementController>();
         discTransform = GameManager.Instance.DiscInstance.gameObject.transform;
         
-        StartCoroutine(CheckHoldsDisk());
+        holdsDiscCoroutine = StartCoroutine(CheckHoldsDisk());
+    }
+
+    private void OnDisable()
+    {
+        if (holdsDiscBehaviour != null) StopCoroutine(holdsDiscCoroutine);
     }
 
     private void Update()

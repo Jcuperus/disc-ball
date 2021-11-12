@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace UI
@@ -9,11 +10,21 @@ namespace UI
 
         private void Start()
         {
-            ScoreManager.RedScore.OnDataChanged +=
-                scoreData => UpdateScore(playerScoreLabel, playerSetCounter, scoreData);
-            ScoreManager.BlueScore.OnDataChanged +=
-                scoreData => UpdateScore(enemyScoreLabel, enemySetCounter, scoreData);
+            ScoreManager.RedScore.OnDataChanged += UpdateRedScore;
+            ScoreManager.BlueScore.OnDataChanged += UpdateBlueScore;
         }
+
+        private void OnDisable()
+        {
+            ScoreManager.RedScore.OnDataChanged -= UpdateRedScore;
+            ScoreManager.BlueScore.OnDataChanged -= UpdateBlueScore;
+        }
+
+        private void UpdateRedScore(ScoreManager.ScoreData scoreData) =>
+            UpdateScore(playerScoreLabel, playerSetCounter, scoreData);
+
+        private void UpdateBlueScore(ScoreManager.ScoreData scoreData) =>
+            UpdateScore(enemyScoreLabel, enemySetCounter, scoreData);
 
         private void UpdateScore(FadeInLabel scoreLabel, SetCounter setCounter, ScoreManager.ScoreData score)
         {

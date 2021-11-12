@@ -6,9 +6,9 @@ namespace Helpers
 {
     public static class CoroutineExtensions
     {
-        public static void DelayedAction(this MonoBehaviour monoBehaviour, Action action, float duration)
+        public static Coroutine DelayedAction(this MonoBehaviour monoBehaviour, Action action, float duration)
         {
-            monoBehaviour.StartCoroutine(DelayedActionCoroutine(action, duration));
+            return monoBehaviour.StartCoroutine(DelayedActionCoroutine(action, duration));
         }
 
         private static IEnumerator DelayedActionCoroutine(Action action, float duration)

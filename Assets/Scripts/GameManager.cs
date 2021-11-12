@@ -15,6 +15,7 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField, Min(0)] private int newRoundCountdownAmount = 3;
     [SerializeField] private float roundEndDelay = 0.1f;
     private GameConfigurationData gameConfiguration;
+    private Coroutine startRoundCoroutine;
 
     public void StartGame()
     {
@@ -29,8 +30,8 @@ public class GameManager : MonoSingleton<GameManager>
 
         gameConfiguration = GameConfigurationManager.Instance.GameConfig;
 
-        playerGoal.OnGoalScored += () => OnGoalScored(false);
-        enemyGoal.OnGoalScored += () => OnGoalScored(true);
+        playerGoal.OnGoalScored += OnEnemyScored;
+        enemyGoal.OnGoalScored += OnPlayerScored;
         
         DiscInstance = Instantiate(discPrefab);
         DiscInstance.gameObject.SetActive(false);
@@ -38,10 +39,21 @@ public class GameManager : MonoSingleton<GameManager>
         StartGame();
     }
 
+    private void OnDisable()
+    {
+        playerGoal.OnGoalScored -= OnEnemyScored;
+        enemyGoal.OnGoalScored -= OnPlayerScored;
+        
+        if (startRoundCoroutine != null) StopCoroutine(startRoundCoroutine);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) StateManager.TogglePause();
     }
+
+    private void OnPlayerScored() => OnGoalScored(true);
+    private void OnEnemyScored() => OnGoalScored(false);
 
     private void OnGoalScored(bool isPlayerGoal)
     {
@@ -56,7 +68,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void StartRound()
     {
-        StartCoroutine(StartRoundCoroutine());
+        startRoundCoroutine = StartCoroutine(StartRoundCoroutine());
     }
 
     private IEnumerator StartRoundCoroutine()
