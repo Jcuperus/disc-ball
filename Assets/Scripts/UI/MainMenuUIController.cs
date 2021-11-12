@@ -7,18 +7,24 @@ namespace UI
     public class MainMenuUIController : MonoBehaviour
     {
         [SerializeField] private TMP_Text startButtonLabel;
+        [SerializeField] private GameObject customGamePanel;
         [SerializeField] private DiscBehaviour discPrefab;
 
         private const string GameSceneName = "DiskBallScene";
         private const string LoadingText = "Loading...";
         
-        public void StartGame()
+        public void OnStartClicked()
         {
             SceneManager.LoadSceneAsync(GameSceneName);
             startButtonLabel.text = LoadingText;
         }
 
-        public void Quit() => Application.Quit();
+        public void OnCustomGameClicked()
+        {
+            customGamePanel.SetActive(!customGamePanel.activeSelf);
+        }
+
+        public void OnQuitClicked() => Application.Quit();
 
         private void Awake()
         {
