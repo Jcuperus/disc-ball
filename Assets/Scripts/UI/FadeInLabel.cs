@@ -12,16 +12,12 @@ namespace UI
         
         private Animator animator;
         private TMP_Text label;
+
+        private Coroutine currentCoroutine;
         
         private static readonly int FadeInTrigger = Animator.StringToHash("FadeIn");
         private static readonly int FadeOutTrigger = Animator.StringToHash("FadeOut");
         
-        private void Awake()
-        {
-            animator = GetComponent<Animator>();
-            label = GetComponent<TMP_Text>();
-        }
-
         public void FadeIn(string newText)
         {
             label.text = newText;
@@ -36,7 +32,18 @@ namespace UI
         public void FadeOut(Action callback)
         {
             FadeOut();
-            this.DelayedAction(callback, GetCurrentAnimationDuration());
+            currentCoroutine = this.DelayedAction(callback, GetCurrentAnimationDuration());
+        }
+        
+        private void OnEnable()
+        {
+            animator = GetComponent<Animator>();
+            label = GetComponent<TMP_Text>();
+        }
+
+        private void OnDisable()
+        {
+            if (currentCoroutine != null) StopCoroutine(currentCoroutine);
         }
 
         private float GetCurrentAnimationDuration()

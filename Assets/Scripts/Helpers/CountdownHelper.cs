@@ -16,7 +16,7 @@ namespace Helpers
                 yield return new WaitForSeconds(1);
             }
             
-            OnCountChanged.Invoke(0);
+            OnCountChanged?.Invoke(0);
         }
     }
 }

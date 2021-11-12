@@ -10,7 +10,7 @@ public static class ScoreManager
             set
             {
                 points = value;
-                OnDataChanged.Invoke(this);
+                OnDataChanged?.Invoke(this);
             }
         }
 
@@ -22,7 +22,7 @@ public static class ScoreManager
             set
             {
                 sets = value;
-                OnDataChanged.Invoke(this);
+                OnDataChanged?.Invoke(this);
             }
         }
 

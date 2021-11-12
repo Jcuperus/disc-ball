@@ -10,12 +10,17 @@ namespace UI
         private GameObject panel;
         private int count;
 
-        private void Awake()
+        private void OnEnable()
         {
             panel = transform.GetChild(0).gameObject;
             panel.SetActive(false);
             
             CountdownHelper.OnCountChanged += UpdateCounter;
+        }
+
+        private void OnDisable()
+        {
+            CountdownHelper.OnCountChanged -= UpdateCounter;
         }
 
         private void UpdateCounter(int newCount)

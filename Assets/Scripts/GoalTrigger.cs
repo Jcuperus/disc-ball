@@ -10,7 +10,7 @@ public class GoalTrigger : MonoBehaviour
     {
         if (other.CompareTag("Disc") && other.TryGetComponent(out DiscBehaviour disc) && !disc.isBeingHeld)
         {
-            OnGoalScored.Invoke();
+            OnGoalScored?.Invoke();
         }
     }
 }

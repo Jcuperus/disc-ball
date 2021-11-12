@@ -5,7 +5,8 @@ namespace UI
     public class SetCounter : MonoBehaviour
     {
         [SerializeField] private RectTransform nodePrefab;
-
+        [SerializeField] private float nodeSpacing = 5f;
+        
         public int SetCount
         {
             get => setCount;
@@ -26,7 +27,7 @@ namespace UI
         private void Start()
         {
             rectTransform = GetComponent<RectTransform>();
-            setAmount = GameManager.Instance.gameConfiguration.gameSets;
+            setAmount = GameConfigurationManager.Instance.GameConfig.gameSets;
         }
 
         private void UpdateCounter()
@@ -36,7 +37,7 @@ namespace UI
                 Destroy(transform.GetChild(i).gameObject);
             }
 
-            float nodeHeight = rectTransform.rect.height / setAmount;
+            float nodeHeight = (rectTransform.rect.height - Mathf.Max(0, setAmount - 1) * nodeSpacing) / setAmount;
             
             for (int i = 0; i < SetCount; i++)
             {

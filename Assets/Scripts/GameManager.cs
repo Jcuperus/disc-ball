@@ -7,33 +7,53 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoSingleton<GameManager>
 {
     [NonSerialized] public DiscBehaviour DiscInstance;
-
-    public GameConfigurationData gameConfiguration;
+    public Action<bool> OnGameEnd;
     
     [SerializeField] private GoalTrigger playerGoal, enemyGoal;
     [SerializeField] private DiscBehaviour discPrefab;
     [SerializeField] private Vector3 discSpawnPosition;
     [SerializeField, Min(0)] private int newRoundCountdownAmount = 3;
     [SerializeField] private float roundEndDelay = 0.1f;
+    private GameConfigurationData gameConfiguration;
+    private Coroutine startRoundCoroutine;
 
-    public Action<bool> OnGameEnd;
+    public void StartGame()
+    {
+        ScoreManager.Reset();
+        StateManager.State = StateManager.GameState.Running;
+        StartRound();
+    }
     
     protected override void Awake()
     {
         base.Awake();
 
-        playerGoal.OnGoalScored += () => OnGoalScored(false);
-        enemyGoal.OnGoalScored += () => OnGoalScored(true);
+        gameConfiguration = GameConfigurationManager.Instance.GameConfig;
+
+        playerGoal.OnGoalScored += OnEnemyScored;
+        enemyGoal.OnGoalScored += OnPlayerScored;
         
         DiscInstance = Instantiate(discPrefab);
         DiscInstance.gameObject.SetActive(false);
-        StartRound();
+        
+        StartGame();
+    }
+
+    private void OnDisable()
+    {
+        playerGoal.OnGoalScored -= OnEnemyScored;
+        enemyGoal.OnGoalScored -= OnPlayerScored;
+        
+        if (startRoundCoroutine != null) StopCoroutine(startRoundCoroutine);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) StateManager.TogglePause();
     }
+
+    private void OnPlayerScored() => OnGoalScored(true);
+    private void OnEnemyScored() => OnGoalScored(false);
 
     private void OnGoalScored(bool isPlayerGoal)
     {
@@ -48,7 +68,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void StartRound()
     {
-        StartCoroutine(StartRoundCoroutine());
+        startRoundCoroutine = StartCoroutine(StartRoundCoroutine());
     }
 
     private IEnumerator StartRoundCoroutine()
@@ -109,6 +129,6 @@ public class GameManager : MonoSingleton<GameManager>
     private void EndGame(bool redWins)
     {
         StateManager.State = StateManager.GameState.GameEnded;
-        OnGameEnd.Invoke(redWins);
+        OnGameEnd?.Invoke(redWins);
     }
 }

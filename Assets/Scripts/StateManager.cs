@@ -18,7 +18,7 @@ public static class StateManager
         {
             previousState = state;
             state = value;
-            OnStateChanged.Invoke(state);
+            OnStateChanged?.Invoke(state);
         }
     }
     

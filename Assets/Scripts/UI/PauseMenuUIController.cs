@@ -1,11 +1,23 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace UI
 {
     public class PauseMenuUIController : MonoBehaviour
     {
+        [SerializeField] private Button resumeButton, returnButton, quitButton;
         private GameObject panel;
-    
+
+        private const string MenuSceneName = "MainMenuScene";
+        
+        private void Awake()
+        {
+            resumeButton.onClick.AddListener(OnResumeClicked);
+            returnButton.onClick.AddListener(OnReturnClicked);
+            quitButton.onClick.AddListener(OnQuitClicked);
+        }
+
         private void Start()
         {
             panel = transform.GetChild(0).gameObject;
@@ -14,17 +26,30 @@ namespace UI
             StateManager.OnStateChanged += ShowPauseMenu;
         }
 
+        private void OnDisable()
+        {
+            StateManager.OnStateChanged -= ShowPauseMenu;
+        }
+
         private void ShowPauseMenu(StateManager.GameState gameState)
         {
             panel.SetActive(gameState == StateManager.GameState.Paused);
         }
 
-        public void OnResumeClicked()
+        private void OnResumeClicked()
         {
             StateManager.TogglePause();
         }
 
-        public void OnQuitClicked()
+        private void OnReturnClicked()
+        {
+            StateManager.TogglePause();
+            StateManager.State = StateManager.GameState.GameEnded;
+            
+            SceneManager.LoadScene(MenuSceneName);
+        }
+
+        private void OnQuitClicked()
         {
             Application.Quit();
         }
