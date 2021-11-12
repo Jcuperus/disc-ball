@@ -427,8 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startButtonLabel: {fileID: 2460785148895181857}
-  discPrefab: {fileID: -7728553324131716774, guid: d3096388c80ddc648aa762e3400d9293,
-    type: 3}
+  customGamePanel: {fileID: 0}
 --- !u!1001 &8562756011847454768
 PrefabInstance:
   m_ObjectHideFlags: 0
