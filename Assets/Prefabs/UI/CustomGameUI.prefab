@@ -761,7 +761,7 @@ PrefabInstance:
     - target: {fileID: 7900816698227902154, guid: a11f057a7207fc74d9e32646547d40a6,
         type: 3}
       propertyPath: m_Options.m_Options.Array.size
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7900816698227902154, guid: a11f057a7207fc74d9e32646547d40a6,
         type: 3}
@@ -771,11 +771,21 @@ PrefabInstance:
     - target: {fileID: 7900816698227902154, guid: a11f057a7207fc74d9e32646547d40a6,
         type: 3}
       propertyPath: m_Options.m_Options.Array.data[1].m_Text
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7900816698227902154, guid: a11f057a7207fc74d9e32646547d40a6,
         type: 3}
       propertyPath: m_Options.m_Options.Array.data[2].m_Text
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7900816698227902154, guid: a11f057a7207fc74d9e32646547d40a6,
+        type: 3}
+      propertyPath: m_Options.m_Options.Array.data[3].m_Text
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7900816698227902154, guid: a11f057a7207fc74d9e32646547d40a6,
+        type: 3}
+      propertyPath: m_Options.m_Options.Array.data[4].m_Text
       value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1060,7 +1070,7 @@ PrefabInstance:
     - target: {fileID: 7900816698227902154, guid: a11f057a7207fc74d9e32646547d40a6,
         type: 3}
       propertyPath: m_Options.m_Options.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7900816698227902154, guid: a11f057a7207fc74d9e32646547d40a6,
         type: 3}
@@ -1075,6 +1085,16 @@ PrefabInstance:
     - target: {fileID: 7900816698227902154, guid: a11f057a7207fc74d9e32646547d40a6,
         type: 3}
       propertyPath: m_Options.m_Options.Array.data[2].m_Text
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7900816698227902154, guid: a11f057a7207fc74d9e32646547d40a6,
+        type: 3}
+      propertyPath: m_Options.m_Options.Array.data[3].m_Text
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7900816698227902154, guid: a11f057a7207fc74d9e32646547d40a6,
+        type: 3}
+      propertyPath: m_Options.m_Options.Array.data[4].m_Text
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7900816698227902154, guid: a11f057a7207fc74d9e32646547d40a6,
