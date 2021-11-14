@@ -179,4 +179,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   speed: 18
-  actorCollisionDelay: 0
+  actorCollisionDelay: 0.1
