@@ -217,7 +217,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1433,6 +1433,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ConfigurationManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8951547797153788466, guid: 1ce17ee38fb3b75418e58f811523398f,
+        type: 3}
+      propertyPath: GameConfig
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8951547797153788467, guid: 1ce17ee38fb3b75418e58f811523398f,
         type: 3}

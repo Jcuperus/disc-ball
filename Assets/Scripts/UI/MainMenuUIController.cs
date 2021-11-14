@@ -25,7 +25,6 @@ namespace UI
 
         private void OnStartClicked()
         {
-            GameConfigurationManager.Instance.GameConfig = GameConfigurationManager.Instance.DefaultConfig;
             MenuManager.StartGame();
             startButtonLabel.text = LoadingText;
         }

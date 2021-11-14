@@ -15,7 +15,7 @@ namespace UI
         private void Awake()
         {
             startButton.onClick.AddListener(OnStartClicked);
-            customGameConfig = ScriptableObject.CreateInstance<GameConfigurationData>();
+            customGameConfig = GameConfigurationManager.Instance.GameConfig;
             
             InitializeDropdownOptions();
         }
