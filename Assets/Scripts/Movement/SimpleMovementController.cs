@@ -9,7 +9,7 @@ namespace Movement
         [SerializeField] private LayerMask collisionMask;
         [SerializeField] private float radius;
         [SerializeField] private float castYOffset;
-        [SerializeField] private int rayAmount = 5;
+        [SerializeField] private int rayAmount = 7;
 
         private const float ArcLength = Mathf.PI;
 

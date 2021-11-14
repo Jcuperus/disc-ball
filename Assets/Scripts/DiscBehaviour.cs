@@ -33,7 +33,6 @@ public class DiscBehaviour : MonoBehaviour
     private void Awake()
     {
         discController = GetComponent<SimpleMovementController>();
-        velocity = new Vector3(1, 0, 1).normalized;
     }
 
     private void OnEnable()
