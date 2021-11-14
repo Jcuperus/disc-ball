@@ -1,28 +1,53 @@
+using Menu;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
     public class MainMenuUIController : MonoBehaviour
     {
+        [SerializeField] private Button startButton, customButton, settingsButton, quitButton;
         [SerializeField] private TMP_Text startButtonLabel;
-        [SerializeField] private GameObject customGamePanel;
+        [SerializeField] private GameObject customGamePanel, settingsPanel;
 
-        private const string LoadingText = "Loading...";
+        private GameObject currentPanel;
         
-        public void OnStartClicked()
+        private const string LoadingText = "Loading...";
+
+        private void Awake()
         {
-            GameConfigurationManager.Instance.GameConfig = GameConfigurationManager.Instance.DefaultConfig;
+            startButton.onClick.AddListener(OnStartClicked);
+            customButton.onClick.AddListener(OnCustomGameClicked);
+            settingsButton.onClick.AddListener(OnSettingsClicked);
+            quitButton.onClick.AddListener(Application.Quit);
+        }
+
+        private void OnStartClicked()
+        {
             MenuManager.StartGame();
             startButtonLabel.text = LoadingText;
         }
+        
+        private void OnCustomGameClicked() => ToggleSidePanel(customGamePanel);
+        
+        private void OnSettingsClicked() => ToggleSidePanel(settingsPanel);
 
-        public void OnCustomGameClicked()
+        private void ToggleSidePanel(GameObject panel)
         {
-            customGamePanel.SetActive(!customGamePanel.activeSelf);
+            if (currentPanel == panel)
+            {
+                currentPanel.SetActive(false);
+                currentPanel = null;
+            }
+            else
+            {
+                if (currentPanel != null) currentPanel.SetActive(false);
+                
+                currentPanel = panel;
+                currentPanel.SetActive(true);
+            }
         }
-
-        public void OnQuitClicked() => Application.Quit();
     }
 }
 

@@ -1,10 +1,11 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace UI
 {
     [RequireComponent(typeof(TMP_Text))]
-    public class TextButton : MonoBehaviour
+    public class TextButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private FontStyles selectedStyles;
         
@@ -15,12 +16,15 @@ namespace UI
             label = GetComponent<TMP_Text>();
         }
 
-        public void Select()
+        public void OnPointerEnter(PointerEventData eventData) => Select();
+        public void OnPointerExit(PointerEventData eventData) => Deselect();
+
+        private void Select()
         {
             label.fontStyle |= selectedStyles;
         }
 
-        public void Deselect()
+        private void Deselect()
         {
             label.fontStyle &= ~selectedStyles;
         }

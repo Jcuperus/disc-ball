@@ -76,7 +76,9 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 320
+  radius: 0.5
   castYOffset: 0.5
+  rayAmount: 5
 --- !u!114 &5769953491898972420
 MonoBehaviour:
   m_ObjectHideFlags: 0
