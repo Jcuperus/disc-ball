@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Helpers;
+using Movement;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -59,7 +60,8 @@ public class EnemyBehaviour : MonoBehaviour
     private void LookAtDisc()
     {
         Vector3 direction = (discTransform.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.Euler(0f, MathHelper.GetVectorAngle(direction), 0f);
+        float directionDegrees = MathHelper.DirectionToAngle(direction) * Mathf.Rad2Deg;
+        Quaternion lookRotation = Quaternion.Euler(0f, directionDegrees, 0f);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
     }
     

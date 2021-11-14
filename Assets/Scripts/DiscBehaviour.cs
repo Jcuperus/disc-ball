@@ -1,5 +1,6 @@
 ﻿using System;
 using Helpers;
+using Movement;
 using UnityEngine;
 
 [RequireComponent(typeof(SimpleMovementController))]
@@ -22,7 +23,7 @@ public class DiscBehaviour : MonoBehaviour
         if (!isBeingHeld) return;
 
         Transform discTransform = transform;
-        Vector3 direction = MathHelper.GetAngleVector(discTransform.parent.eulerAngles.y);
+        Vector3 direction = MathHelper.AngleToDirection(discTransform.parent.eulerAngles.y * Mathf.Deg2Rad);
         discTransform.SetParent(null);
         discTransform.eulerAngles = Vector3.zero;
         LaunchDisc(direction);
@@ -32,6 +33,7 @@ public class DiscBehaviour : MonoBehaviour
     private void Awake()
     {
         discController = GetComponent<SimpleMovementController>();
+        velocity = new Vector3(1, 0, 1).normalized;
     }
 
     private void OnEnable()
@@ -49,11 +51,11 @@ public class DiscBehaviour : MonoBehaviour
     {
         if (isBeingHeld) return;
         
-        discController.Move(speed * Time.deltaTime * velocity);
+        SimpleMovementController.CollisionInfo collisionInfo = discController.Move(speed * Time.deltaTime * velocity);
 
-        if (discController.CollisionInfo.HasCollision)
+        if (collisionInfo.HasCollision)
         {
-            OnDiscCollision(discController.CollisionInfo.RaycastHit);
+            OnDiscCollision(collisionInfo.RaycastHit);
         }
     }
 

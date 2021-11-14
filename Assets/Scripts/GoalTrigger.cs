@@ -1,14 +1,17 @@
 ﻿using System;
 using UnityEngine;
+using Movement;
 
 [RequireComponent(typeof(Collider))]
-public class GoalTrigger : MonoBehaviour
+public class GoalTrigger : MonoBehaviour, IMovementControllerTrigger
 {
     public Action OnGoalScored;
 
-    private void OnTriggerEnter(Collider other)
+    private const string DiscTag = "Disc";
+    
+    public void OnTrigger(GameObject other)
     {
-        if (other.CompareTag("Disc") && other.TryGetComponent(out DiscBehaviour disc) && !disc.isBeingHeld)
+        if (other.CompareTag(DiscTag) && other.TryGetComponent(out DiscBehaviour disc) && !disc.isBeingHeld)
         {
             OnGoalScored?.Invoke();
         }

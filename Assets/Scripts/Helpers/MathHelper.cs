@@ -4,14 +4,16 @@ namespace Helpers
 {
     public static class MathHelper
     {
-        public static float GetVectorAngle(Vector3 vector)
+        public static float Tau = Mathf.PI * 2;
+        
+        public static float DirectionToAngle(Vector3 vector)
         {
-            return Mathf.Atan2(vector.x, vector.z) * Mathf.Rad2Deg;
+            return Mathf.Atan2(vector.x, vector.z);
         }
 
-        public static Vector3 GetAngleVector(float angle)
+        public static Vector3 AngleToDirection(float angle)
         {
-            return new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0f, Mathf.Cos(angle * Mathf.Deg2Rad));
+            return new Vector3(Mathf.Sin(angle), 0f, Mathf.Cos(angle));
         }
     }
 }

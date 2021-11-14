@@ -1,4 +1,5 @@
 ﻿using Helpers;
+using Movement;
 using UnityEngine;
 
 [RequireComponent(typeof(HoldsDiscBehaviour), typeof(SimpleMovementController))]
@@ -31,7 +32,8 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(mouseRay, out RaycastHit raycastHit, 100))
         {
             Vector3 direction = (raycastHit.point - transform.position).normalized;
-            Quaternion lookRotation = Quaternion.Euler(0f, MathHelper.GetVectorAngle(direction), 0f);
+            float directionDegrees = MathHelper.DirectionToAngle(direction) * Mathf.Rad2Deg;
+            Quaternion lookRotation = Quaternion.Euler(0f, directionDegrees, 0f);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
         }
     }

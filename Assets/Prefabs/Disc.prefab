@@ -90,8 +90,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4429580876056665795}
+  - component: {fileID: 5551680853342907255}
   - component: {fileID: 3082180407168612055}
-  - component: {fileID: 6137552393699529215}
   - component: {fileID: 142665569567828347}
   - component: {fileID: -7728553324131716774}
   m_Layer: 0
@@ -116,6 +116,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &5551680853342907255
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4429580876056665822}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3082180407168612055
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -132,19 +145,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &6137552393699529215
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4429580876056665822}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.4
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &142665569567828347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +160,9 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 192
+  radius: 0.4
   castYOffset: 0
+  rayAmount: 5
 --- !u!114 &-7728553324131716774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,4 +179,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   speed: 18
-  actorCollisionDelay: 0.1
+  actorCollisionDelay: 0
