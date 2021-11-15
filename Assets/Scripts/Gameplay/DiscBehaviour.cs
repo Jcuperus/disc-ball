@@ -72,6 +72,7 @@ namespace Gameplay
                 {
                     FollowObject(hitObject);
                     holdsDiscBehaviour.SetDisc(this);
+                    audioSource.Play();
                 }
             }
             else
