@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6121361901977218070}
   - component: {fileID: 6121361901977218065}
   - component: {fileID: 6121361901977218071}
+  - component: {fileID: 1209605109116041938}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -148,7 +149,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2919c3c8acbbb694c9467f64e3f85a9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 6121361902430282125}
   selectedStyles: 4
+--- !u!114 &1209605109116041938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6121361901977218067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd9156f718894b639acf0f794ce50055, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPitchRange: 0.9
+  maxPitchRange: 1.1
+  clips:
+  - {fileID: 8300000, guid: d869c2baf6e48ef439aca2975c91e7e0, type: 3}
+  - {fileID: 8300000, guid: 7e1da50f5ef58f64d959df53878e234c, type: 3}
+  - {fileID: 8300000, guid: 7980560ab4c85d54599c06cf4703da3b, type: 3}
+  - {fileID: 8300000, guid: 7e25ac96262c29f449b7dc9b6cb70da2, type: 3}
+  - {fileID: 8300000, guid: c9cd11981cee1af4cbd952809e4c0d8a, type: 3}
+  - {fileID: 8300000, guid: 8c806f304eb7a3347b777edbb4cef75e, type: 3}
+  - {fileID: 8300000, guid: 19b48aaed7be60b48b78d24dcbf1df30, type: 3}
+  - {fileID: 8300000, guid: e56eccb2869d90640aaad60c3082af91, type: 3}
+  - {fileID: 8300000, guid: 4b5cec60a086a884f9f12accf5b23226, type: 3}
 --- !u!1 &6121361902430282127
 GameObject:
   m_ObjectHideFlags: 0
