@@ -875,6 +875,9 @@ MonoBehaviour:
   discSpawnPosition: {x: 0, y: 1.1, z: 0}
   newRoundCountdownAmount: 3
   roundEndDelay: 0.1
+  scoreAudioClip: {fileID: 8300000, guid: 2deb054753520f44e9ab3605457a2f0f, type: 3}
+  minPitchRange: 0.7
+  maxPitchRange: 1.5
 --- !u!4 &1733656211
 Transform:
   m_ObjectHideFlags: 0
