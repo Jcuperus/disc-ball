@@ -2,7 +2,8 @@
 
 public static class SoundEffectManager
 {
-    private static readonly ObjectPool<RecyclableAudioSource> AudioSourcePool = new ObjectPool<RecyclableAudioSource>();
+    private static readonly ObjectPool<RecyclableAudioSource>
+        AudioSourcePool = new ObjectPool<RecyclableAudioSource>(5);
     
     public static void Play(AudioClip clip, float pitch = 1f)
     {
