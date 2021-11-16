@@ -17,11 +17,12 @@ namespace UI
         {
             settingsData = SettingsManager.SettingsData;
             
-            windowedToggle.isOn = settingsData.isWindowed;
             PopulateResolutionOptions();
-            applyButton.onClick.AddListener(ApplySettings);
+            windowedToggle.isOn = settingsData.isWindowed;
             sfxVolumeSlider.value = settingsData.sfxVolume;
             ambienceVolumeSlider.value = settingsData.ambienceVolume;
+            
+            applyButton.onClick.AddListener(OnApplyClicked);
         }
 
         private void PopulateResolutionOptions()
@@ -37,17 +38,15 @@ namespace UI
             }
         }
         
-        private void ApplySettings()
+        private void OnApplyClicked()
         {
             Resolution resolution = Screen.resolutions[resolutionDropdown.value];
             settingsData.resolution = SettingsData.ResolutionData.FromResolution(resolution);
             settingsData.isWindowed = windowedToggle.isOn;
             settingsData.sfxVolume = sfxVolumeSlider.value;
             settingsData.ambienceVolume = ambienceVolumeSlider.value;
-            SettingsData.Save(settingsData);
             
-            Screen.SetResolution(settingsData.resolution.width, settingsData.resolution.height,
-                !settingsData.isWindowed, settingsData.resolution.refreshRate);
+            SettingsManager.ApplySettings(settingsData);
         }
     }
 }
