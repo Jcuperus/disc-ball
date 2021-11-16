@@ -37,6 +37,7 @@ public class SettingsData
     
     public ResolutionData resolution;
     public bool isWindowed;
+    public float sfxVolume, ambienceVolume;
 
     public const string FileName = "settings.json";
     
@@ -70,7 +71,9 @@ public class SettingsData
         return new SettingsData
         {
             resolution = ResolutionData.FromResolution(Screen.currentResolution),
-            isWindowed = false
+            isWindowed = false,
+            sfxVolume = 1f,
+            ambienceVolume = 1f
         };
     }
 }

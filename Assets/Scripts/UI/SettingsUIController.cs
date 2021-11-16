@@ -8,17 +8,20 @@ namespace UI
     {
         [SerializeField] private TMP_Dropdown resolutionDropdown;
         [SerializeField] private Toggle windowedToggle;
+        [SerializeField] private Slider sfxVolumeSlider, ambienceVolumeSlider;
         [SerializeField] private Button applyButton;
 
         private SettingsData settingsData;
         
         private void Awake()
         {
-            settingsData = SettingsData.Load();
+            settingsData = SettingsManager.SettingsData;
             
             windowedToggle.isOn = settingsData.isWindowed;
             PopulateResolutionOptions();
             applyButton.onClick.AddListener(ApplySettings);
+            sfxVolumeSlider.value = settingsData.sfxVolume;
+            ambienceVolumeSlider.value = settingsData.ambienceVolume;
         }
 
         private void PopulateResolutionOptions()
@@ -39,6 +42,8 @@ namespace UI
             Resolution resolution = Screen.resolutions[resolutionDropdown.value];
             settingsData.resolution = SettingsData.ResolutionData.FromResolution(resolution);
             settingsData.isWindowed = windowedToggle.isOn;
+            settingsData.sfxVolume = sfxVolumeSlider.value;
+            settingsData.ambienceVolume = ambienceVolumeSlider.value;
             SettingsData.Save(settingsData);
             
             Screen.SetResolution(settingsData.resolution.width, settingsData.resolution.height,

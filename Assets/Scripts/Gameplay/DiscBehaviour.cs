@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Gameplay
 {
-    [RequireComponent(typeof(SimpleMovementController))]
+    [RequireComponent(typeof(SimpleMovementController), typeof(MultiClipSource))]
     public class DiscBehaviour : MonoBehaviour
     {
         [NonSerialized] public bool isBeingHeld;
@@ -16,6 +16,7 @@ namespace Gameplay
         [SerializeField] private float actorCollisionDelay = 0.1f;
 
         private SimpleMovementController discController;
+        private MultiClipSource audioSource;
     
         private const float YOffset = 1.23f;
         private const float ParentZOffset = 0.4f;
@@ -35,6 +36,7 @@ namespace Gameplay
         private void Awake()
         {
             discController = GetComponent<SimpleMovementController>();
+            audioSource = GetComponent<MultiClipSource>();
         }
 
         private void OnEnable()
@@ -70,11 +72,13 @@ namespace Gameplay
                 {
                     FollowObject(hitObject);
                     holdsDiscBehaviour.SetDisc(this);
+                    audioSource.Play();
                 }
             }
             else
             {
                 velocity = Vector3.Reflect(velocity, hitInfo.normal);
+                audioSource.Play();
             }
         }
 

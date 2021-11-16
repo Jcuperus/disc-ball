@@ -2,11 +2,13 @@
 
 namespace Gameplay
 {
+    [RequireComponent(typeof(MultiClipSource))]
     public class HoldsDiscBehaviour : MonoBehaviour
     {
         public bool HasDisc { get; private set; }
     
         private Animator animator;
+        private MultiClipSource audioSource;
         private DiscBehaviour disc;
     
         private static readonly int HoldsDiskTrigger = Animator.StringToHash("holdsDisk");
@@ -14,6 +16,7 @@ namespace Gameplay
         private void Start()
         {
             animator = GetComponentInChildren<Animator>();
+            audioSource = GetComponent<MultiClipSource>();
         }
     
         public void FireDisc()
@@ -21,6 +24,7 @@ namespace Gameplay
             if (!HasDisc) return;
 
             disc.LaunchDiscFromParent();
+            audioSource.Play();
             SetDisc(null);
         }
 

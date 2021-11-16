@@ -16,6 +16,12 @@ namespace Gameplay
         [SerializeField] private Vector3 discSpawnPosition;
         [SerializeField, Min(0)] private int newRoundCountdownAmount = 3;
         [SerializeField] private float roundEndDelay = 0.1f;
+        
+        [Header("Audio")]
+        [SerializeField] private AudioClip victoryAudioClip;
+        [SerializeField] private AudioClip scoreAudioClip;
+        [SerializeField, Range(-3f, 3f)] private float minScorePitch = 0.7f, maxScorePitch = 1.3f;
+        
         private GameConfigurationData gameConfiguration;
         private Coroutine startRoundCoroutine;
 
@@ -63,6 +69,7 @@ namespace Gameplay
 
             ScoreManager.ScoreData scorerData = isPlayerGoal ? ScoreManager.RedScore : ScoreManager.BlueScore;
             scorerData.Points++;
+            SoundEffectManager.Play(scoreAudioClip, Random.Range(minScorePitch, maxScorePitch));
 
             CheckSetEnded();
             EndRound();
@@ -131,6 +138,7 @@ namespace Gameplay
         private void EndGame(bool redWins)
         {
             StateManager.State = StateManager.GameState.GameEnded;
+            SoundEffectManager.Play(victoryAudioClip);
             OnGameEnd?.Invoke(redWins);
         }
     }
