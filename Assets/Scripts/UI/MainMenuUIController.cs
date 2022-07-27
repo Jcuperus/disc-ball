@@ -1,3 +1,4 @@
+using Helpers;
 using Menu;
 using TMPro;
 using UnityEngine;
@@ -7,7 +8,7 @@ namespace UI
 {
     public class MainMenuUIController : MonoBehaviour
     {
-        [SerializeField] private Button startButton, customButton, settingsButton, quitButton;
+        [SerializeField] private Button startButton, customButton, settingsButton;
         [SerializeField] private TMP_Text startButtonLabel;
         [SerializeField] private GameObject customGamePanel, settingsPanel;
 
@@ -20,7 +21,6 @@ namespace UI
             startButton.onClick.AddListener(OnStartClicked);
             customButton.onClick.AddListener(OnCustomGameClicked);
             settingsButton.onClick.AddListener(OnSettingsClicked);
-            quitButton.onClick.AddListener(Application.Quit);
         }
 
         private void OnStartClicked()

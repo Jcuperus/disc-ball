@@ -1,3 +1,4 @@
+using Helpers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -6,7 +7,7 @@ namespace UI
 {
     public class PauseMenuUIController : MonoBehaviour
     {
-        [SerializeField] private Button resumeButton, returnButton, quitButton;
+        [SerializeField] private Button resumeButton, returnButton;
         private GameObject panel;
 
         private const string MenuSceneName = "MainMenuScene";
@@ -15,7 +16,6 @@ namespace UI
         {
             resumeButton.onClick.AddListener(OnResumeClicked);
             returnButton.onClick.AddListener(OnReturnClicked);
-            quitButton.onClick.AddListener(OnQuitClicked);
         }
 
         private void Start()
@@ -47,11 +47,6 @@ namespace UI
             StateManager.State = StateManager.GameState.GameEnded;
             
             SceneManager.LoadScene(MenuSceneName);
-        }
-
-        private void OnQuitClicked()
-        {
-            Application.Quit();
         }
     }
 }

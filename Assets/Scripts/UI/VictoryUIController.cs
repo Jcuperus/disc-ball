@@ -1,4 +1,5 @@
 ﻿using Gameplay;
+using Helpers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,7 +9,7 @@ namespace UI
 {
     public class VictoryUIController : MonoBehaviour
     {
-        [SerializeField] private Button restartButton, returnButton, quitButton;
+        [SerializeField] private Button restartButton, returnButton;
         [SerializeField] private TMP_Text victoryLabel;
         [SerializeField] private string winMessage, loseMessage;
 
@@ -23,7 +24,6 @@ namespace UI
             
             restartButton.onClick.AddListener(Restart);
             returnButton.onClick.AddListener(Return);
-            quitButton.onClick.AddListener(Application.Quit);
             
             GameManager.Instance.OnGameEnd += OnGameEnd;
         }
